@@ -16,17 +16,21 @@ public class GameManager : MonoBehaviour
     public GameState gameState;
     public ChatCommand currentCommand;
 
-    public Text recentMessage;
+    public Text votesForOne;
+    public Text votesForTwo;
+    public Text votingState;
 
     private TwitchChat chat;
     private List<ChatCommand> newCommands;
     private IGameCommand[] gameCommands;
 
+    private Vote voteScript;
 
     // Start is called before the first frame update
     void Start()
     {
         gameCommands = GetComponents<IGameCommand>();
+        voteScript = gameObject.GetComponent<Vote>();
 
         newCommands = new List<ChatCommand>();
         chat = gameObject.GetComponent<TwitchChat>();
@@ -48,6 +52,8 @@ public class GameManager : MonoBehaviour
             }
 
             ProcessCommands();
+        } else {
+            chat.ReadChat();
         }
 
         
@@ -61,13 +67,29 @@ public class GameManager : MonoBehaviour
     public void ResetGame() {
         if (gameState != GameState.Playing) {
             SetGameState(GameState.Playing);
+
+            if (voteScript != null) {
+                voteScript.Votes1 = 0;
+                voteScript.Votes2 = 0;
+            }
+
+            if (votingState != null) {
+                votingState.text = "voting is open";
+                votingState.color = Color.green;
+            }
         }
     }
 
     public void EndGame() {
         if (gameState != GameState.GameOver) {
             SetGameState(GameState.GameOver);
+
+            if (votingState != null) {
+                votingState.text = "voting is closed";
+                votingState.color = new Color(1, 130f/255f, 0);
+            }
         }
+
     }
 
     private IGameCommand CommandIsValid(ChatMessage chatMessage) {
