@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public Text votesForOne;
     public Text votesForTwo;
     public Text votingState;
+    public Text connectionState;
 
     private TwitchChat chat;
     private List<ChatCommand> newCommands;
@@ -54,6 +55,14 @@ public class GameManager : MonoBehaviour
             ProcessCommands();
         } else {
             chat.ReadChat();
+        }
+
+        if (chat.connected) {
+            connectionState.text = "Twitch connected";
+            connectionState.color = Color.green;
+        } else {
+            connectionState.text = "Twitch not connected";
+            connectionState.color = new Color(1, 130f/255f, 0);
         }
 
         
