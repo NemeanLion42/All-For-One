@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6088105362671706409}
   - component: {fileID: 4087961713209483135}
   - component: {fileID: 5975064284610832117}
+  - component: {fileID: 1232649465692294303}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -100,7 +101,7 @@ NavMeshAgent:
   m_Acceleration: 16
   avoidancePriority: 50
   m_AngularSpeed: 360
-  m_StoppingDistance: 1
+  m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -121,6 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  shouldPursue: 0
 --- !u!50 &4087961713209483135
 Rigidbody2D:
   serializedVersion: 4
@@ -129,7 +131,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3918881429596508713}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -158,3 +160,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.49999997
+--- !u!58 &1232649465692294303
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3918881429596508713}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1

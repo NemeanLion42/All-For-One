@@ -7,17 +7,35 @@ public class NavMeshAgentController : MonoBehaviour
 {
     public Transform target;
     NavMeshAgent agent;
+    public bool shouldPursue;
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        shouldPursue = true;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        agent.SetDestination(target.position);
+        if (shouldPursue) {
+            agent.isStopped = false;
+            agent.SetDestination(target.position);
+        } else {
+            agent.isStopped = true;
+            agent.ResetPath();
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject == target.gameObject) {
+            shouldPursue = false;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other) {
+        if (other.gameObject == target.gameObject) {
+            shouldPursue = true;
+        }
     }
 }
