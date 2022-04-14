@@ -17,17 +17,25 @@ public class TwitchClient : MonoBehaviour
         // we want this script to be running whenever the game is running
         // Application.runInBackground = true;
 
+        Debug.Log("Running the Twitch Client!");
+
         // set up the bot and tell it which channel to join
         ConnectionCredentials credentials = new ConnectionCredentials("all_for_one_cms611", Secrets.bot_access_token);
+        Debug.Log("Bot credentials initialized!");
+
         client = new Client();
+        Debug.Log("new Client object made");
+
         client.Initialize(credentials, channel_name);
+        Debug.Log("Client initialized");
 
         // here we will subscribe to any EVENTS we want our bot to listen for
         // TO BE FILLED IN LATER
 
-
         // connect our bot to the channel
         client.Connect();
+
+        Debug.Log("Client Connected!");
         
     }
 
