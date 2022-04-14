@@ -10,6 +10,8 @@ public class TwitchChat : MonoBehaviour
 
     public string username, password, channelName;
 
+    public bool connected = false;
+
     private TcpClient twitchClient;
     private StreamReader reader;
     private StreamWriter writer;
@@ -28,6 +30,8 @@ public class TwitchChat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        connected = twitchClient.Connected;
+
         if (twitchClient.Available == 0) {
             reconnectTimer += Time.deltaTime;
         }
