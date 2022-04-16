@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class PlayerMovementController : MonoBehaviour
 {
-    private KeyCode moveUp = KeyCode.W;
-    private KeyCode moveDown = KeyCode.S;
-    private KeyCode moveLeft = KeyCode.A;
-    private KeyCode moveRight = KeyCode.D;
-    public int playerSpeed = 5;
-    public bool easing = true;
-    public float easingRatio = 0.25f;
+    public SettingsController settings;
     private Rigidbody2D _rigidbody;
-    // public Vector2 intendedVelocity;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,26 +16,22 @@ public class PlayerMovementController : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 intendedDirection = new Vector2();
-        if (Input.GetKey(moveUp)) {
+        if (Input.GetKey(settings.playerMoveUp)) {
             intendedDirection += Vector2.up;
         }
-        if (Input.GetKey(moveDown)) {
+        if (Input.GetKey(settings.playerMoveDown)) {
             intendedDirection += Vector2.down;
         }
-        if (Input.GetKey(moveLeft)) {
+        if (Input.GetKey(settings.playerMoveLeft)) {
             intendedDirection += Vector2.left;
         }
-        if (Input.GetKey(moveRight)) {
+        if (Input.GetKey(settings.playerMoveRight)) {
             intendedDirection += Vector2.right;
         }
 
-        Vector2 intendedVelocity = intendedDirection.normalized * playerSpeed;
+        Vector2 intendedVelocity = intendedDirection.normalized * settings.playerMaxSpeed;
 
-        if (easing) {
-            Vector2 difference = intendedVelocity - _rigidbody.velocity;
-            _rigidbody.velocity += difference * easingRatio;
-        } else {
-            _rigidbody.velocity = intendedVelocity;
-        }
+        Vector2 difference = intendedVelocity - _rigidbody.velocity;
+        _rigidbody.velocity += difference * settings.playerEasing;
     }
 }
