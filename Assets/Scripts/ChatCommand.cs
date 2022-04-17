@@ -24,8 +24,10 @@ public class ChatCommand
     public void ParseCommandArguments(ChatMessage message) {
         String[] splitMessage = message.message.Split();
 
-        if (splitMessage.Length > 1) {
-            for (int i = 1; i < splitMessage.Length; i++) {
+        // are there argument contents?
+        if (splitMessage.Length > 0) {
+            // yes! add each arg in the message
+            for (int i = 0; i < splitMessage.Length; i++) {
                 arguments.Add(splitMessage[i]);
             }
         }
@@ -33,5 +35,9 @@ public class ChatCommand
 
     public bool Execute(GameManager gm) {
         return command.Execute(username, arguments, gm);
+    }
+
+    public bool Execute(ChatManager cm) {
+        return command.Execute(username, arguments, cm);
     }
 }

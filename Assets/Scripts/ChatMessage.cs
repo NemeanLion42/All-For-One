@@ -6,5 +6,6 @@ using UnityEngine;
 public class ChatMessage
 {
     public string user;
+    public string command;
     public string message;
 }

@@ -10,4 +10,5 @@ public interface IGameCommand
 
 
     bool Execute(string username, List<string> arguments, GameManager gm = null);
+    bool Execute(string username, List<string> arguments, ChatManager cm = null);
 }

@@ -5,15 +5,26 @@ using TMPro;
 
 public class Vote : MonoBehaviour, IGameCommand
 {
-    public string CommandString => "!vote";
-    public string ShortString => "!v";
+    public string CommandString => "vote";
+    public string ShortString => "v";
+
+    public bool oneVotePerUser = false;
 
     private int votes1 = 0;
     private int votes2 = 0;
     private GameManager _gm;
+    private ChatManager _cm;
+
+    private HashSet<string> usersCountedInVote = new HashSet<string>();
 
     public bool Execute(string username, List<string> arguments, GameManager gm=null) {
         print(username + " sent the !vote command");
+
+        if (oneVotePerUser && usersCountedInVote.Contains(username)) {
+            return false; // vote was not counted
+        } else {
+            usersCountedInVote.Add(username);
+        }
 
         if (gm != null) {
             _gm = gm;
@@ -34,6 +45,27 @@ public class Vote : MonoBehaviour, IGameCommand
         return true;
     }
 
+    public bool Execute(string username, List<string> arguments, ChatManager cm=null) {
+
+        if (oneVotePerUser && usersCountedInVote.Contains(username)) {
+            return false; // vote was not counted
+        } else {
+            usersCountedInVote.Add(username);
+        }
+
+        if (cm != null && arguments.Count > 0) {
+            _cm = cm;
+
+            if (arguments[0] == "1" || arguments[0].ToLower() == "one") {
+                Votes1 += 1;
+            } else if (arguments[0] == "2" || arguments[0].ToLower() == "two") {
+                Votes2 += 1;
+            }
+        }
+
+        return true;
+    }
+
     public int Votes1 {
         get {
             return votes1;
@@ -41,8 +73,9 @@ public class Vote : MonoBehaviour, IGameCommand
         set {
             votes1 = value;
 
-            if (_gm != null && _gm.votesForOne != null) {
-                _gm.votesForOne.text = "Votes:\n"+votes1.ToString();
+            Debug.Log("+1 vote for option 1");
+            if (_cm != null) {
+                _cm.VotesForOne = value;
             }
         }
     }
@@ -54,9 +87,17 @@ public class Vote : MonoBehaviour, IGameCommand
         set {
             votes2 = value;
 
-            if (_gm != null && _gm.votesForTwo != null) {
-                _gm.votesForTwo.text = "Votes:\n"+votes2.ToString();
+            Debug.Log("+1 vote for option 2");
+            if (_cm != null) {
+                _cm.VotesForTwo = value;
             }
         }
+    }
+
+    public void ResetVotes() {
+        Votes1 = 0;
+        Votes2 = 0;
+
+        usersCountedInVote = new HashSet<string>();
     }
 }
