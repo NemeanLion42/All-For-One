@@ -7,35 +7,47 @@ public class NavMeshAgentController : MonoBehaviour
 {
     public Transform target;
     NavMeshAgent agent;
-    public bool shouldPursue;
+    private Vector3 spawnPoint;
+    public enum EnemyState {UNAWARE, PURSUIT, ATTACKING}
+    public EnemyState state;
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-        shouldPursue = true;
+        state = EnemyState.UNAWARE;
+        transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+        spawnPoint = transform.position;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (shouldPursue) {
-            agent.isStopped = false;
-            agent.SetDestination(target.position);
-        } else {
-            agent.isStopped = true;
-            agent.ResetPath();
+        switch (state) {
+            case EnemyState.UNAWARE:
+                agent.isStopped = false;
+                agent.SetDestination(spawnPoint);
+                break;
+            case EnemyState.PURSUIT:
+                agent.isStopped = false;
+                agent.SetDestination(target.position);
+                break;
+            case EnemyState.ATTACKING:
+                agent.isStopped = true;
+                agent.ResetPath();
+                break;
         }
     }
+
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject == target.gameObject) {
-            shouldPursue = false;
+            state = EnemyState.ATTACKING;
         }
     }
     private void OnTriggerExit2D(Collider2D other) {
         if (other.gameObject == target.gameObject) {
-            shouldPursue = true;
+            state = EnemyState.PURSUIT;
         }
     }
 }

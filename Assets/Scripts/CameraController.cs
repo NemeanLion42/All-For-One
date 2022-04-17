@@ -35,6 +35,7 @@ public class CameraController : MonoBehaviour
         float halfHeight = _camera.orthographicSize;
         float halfWidth = halfHeight * _camera.aspect;
         float maxDistance = Mathf.Min(halfWidth, halfHeight) * settings.cameraAllowedPlayerAreaSize;
+        GetComponent<BoxCollider2D>().size = new Vector2(halfWidth*1.9f, halfHeight*1.9f);
 
         // Follow Player
         Vector2 toPlayer = player.transform.position - transform.position;
