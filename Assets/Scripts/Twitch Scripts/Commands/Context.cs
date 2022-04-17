@@ -8,8 +8,14 @@ public class Context : MonoBehaviour, IGameCommand
     public string ShortString => "c";
 
 
-    float lastContextMessageSent = -10.0f; // seconds
-    float minTimeBetweenMessages = 10.0f; // seconds
+    float lastContextCmdReceived = -10.0f; // seconds
+    float minTimeBetweenSending = 10.0f; // seconds
+
+    float lastMsgSent = -1.0f;
+    float timeBetweenOptions = 2.0f; // seconds
+
+
+    List<string> contextMessagesToSend = new List<string>();
 
     ChatManager _cm;
 
@@ -20,22 +26,32 @@ public class Context : MonoBehaviour, IGameCommand
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+
+        if (Time.time > lastMsgSent + timeBetweenOptions && contextMessagesToSend.Count > 0) {
+            string msg = contextMessagesToSend[0];
+            _cm.SendMessageToChat(msg);
+            contextMessagesToSend.RemoveAt(0);
+
+            lastMsgSent = Time.time;
+        }
         
     }
 
     public bool Execute(string username, List<string> arguments, ChatManager cm = null) {
 
+        if (cm != null) {
+            _cm = cm;
+        }
         // have we waited long enough between context message to not get banned?
-        if (Time.time > minTimeBetweenMessages + lastContextMessageSent) {
+        if (Time.time > lastContextCmdReceived + minTimeBetweenSending) {
             // yes! update last sent time and send message
-            lastContextMessageSent = Time.time;
+            lastContextCmdReceived = Time.time;
 
             if (cm != null) {
-                cm.twitchClient.SendMessageToChat("Option Context:"+
-                    "  Charge port: Healing station  "+
-                    "  Weapons depot: Item store  ");
+                contextMessagesToSend.Add("Charge port: Healing station");
+                contextMessagesToSend.Add("Weapons depot: Item store ");
             }
             
         }

@@ -111,7 +111,7 @@ public class ChatManager : MonoBehaviour
         SendMessageToChat("test message from ChatManager! "+UnityEngine.Random.Range(-10.0f, 10.0f));
     }
 
-    void SendMessageToChat(string message) {
+    public void SendMessageToChat(string message) {
         twitchClient.SendMessageToChat(message);
     }
 
