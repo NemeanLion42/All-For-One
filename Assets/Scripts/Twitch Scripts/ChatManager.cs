@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class ChatManager : MonoBehaviour
 {
-    TwitchClient twitchClient;
+    public TwitchClient twitchClient;
 
     private List<ChatCommand> commandsFromChat;
     private IGameCommand[] gameCommands;
@@ -36,6 +36,8 @@ public class ChatManager : MonoBehaviour
 
     public Text temporaryTextBoxForLogging;
 
+    public Text tempConnectedTextbox;
+
 
     // Start is called before the first frame update
     void Start()
@@ -58,9 +60,19 @@ public class ChatManager : MonoBehaviour
     {
         ProcessCommands();
         temporaryTextBoxForLogging.text = VotesForOne.ToString() + " for One\n"+VotesForTwo.ToString() + " for Two";
+    
+        if (twitchClient.clientConnected) {
+            tempConnectedTextbox.text = "-- connected --";
+            tempConnectedTextbox.color = new Color(0f, 0.6f, 0f);
+        } else {
+            tempConnectedTextbox.text = "-- disconnected --";
+            tempConnectedTextbox.color = Color.red;
+        }
     }
 
     public void ConnectClient() {
+        Debug.Log("Attempting to connect to client");
+
         // Connect our client to Twitch!
         twitchClient.Connect(GetChannelName());
 

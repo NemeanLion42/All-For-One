@@ -33,10 +33,6 @@ public class ChatCommand
         }
     }
 
-    public bool Execute(GameManager gm) {
-        return command.Execute(username, arguments, gm);
-    }
-
     public bool Execute(ChatManager cm) {
         return command.Execute(username, arguments, cm);
     }

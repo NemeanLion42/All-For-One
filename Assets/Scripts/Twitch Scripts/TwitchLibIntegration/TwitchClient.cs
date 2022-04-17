@@ -36,6 +36,7 @@ public class TwitchClient : MonoBehaviour
     {
         // we want this script to be running whenever the game is running
         Application.runInBackground = true;       
+        Debug.Log("Twitch Client initialized!");
     }
 
 
