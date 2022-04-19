@@ -26,8 +26,22 @@ public class StartScreen : MonoBehaviour
     public void StartGame() {
 
         if (channelNameTMPText != null && playerStats != null) {
-            playerStats.ChannelName = channelNameTMPText.text;
-            Debug.Log("channel name read as:"+playerStats.ChannelName);
+
+            // create char array to detect valid chars in channel name
+            char[] channelCharList = new char[100];
+            TMP_CharacterInfo[] cinfoList = channelNameTMPText.textInfo.characterInfo;
+
+
+            int added_chars = 0;
+            foreach (TMP_CharacterInfo cinfo in channelNameTMPText.textInfo.characterInfo) {
+                // is the character alphanumeric or an underscore?
+                if (char.IsLetterOrDigit(cinfo.character) || cinfo.character.Equals('_')) {
+                    // yes! add it to our list
+                    channelCharList[added_chars] = cinfo.character;
+                    added_chars++;
+                }
+            }
+            playerStats.ChannelName = channelCharList.ArrayToString();
         }
 
         if (nextScenePath != "") {

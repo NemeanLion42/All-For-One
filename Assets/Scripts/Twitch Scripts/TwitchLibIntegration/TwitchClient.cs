@@ -50,7 +50,7 @@ public class TwitchClient : MonoBehaviour
         Debug.Log("Running the Twitch Client!");
 
         // set up the bot and tell it which channel to join
-        ConnectionCredentials credentials = new ConnectionCredentials("all_for_one_cms611", Secrets.bot_access_token);
+        ConnectionCredentials credentials = new ConnectionCredentials(bot_username, Secrets.bot_access_token);
         Debug.Log("Bot credentials initialized!");
 
         client = new Client();

@@ -7,8 +7,9 @@ using UnityEngine.UI;
 
 public class ChatManager : MonoBehaviour
 {
-    public PlayerStats playerStats;
-    string channelName;
+    [SerializeField]
+    private PlayerStats playerStats;
+    private string channelName;
 
     // ==== CONTROL FLOW ====
     public enum GenerationState {
@@ -19,7 +20,7 @@ public class ChatManager : MonoBehaviour
 
 
     // ==== TWITCH VARIABLES FOR CLIENT AND COMMANDS ====
-    public TwitchClient twitchClient;
+    private TwitchClient twitchClient;
     private List<ChatCommand> commandsFromChat;
     private IGameCommand[] gameCommands;
 
@@ -50,7 +51,6 @@ public class ChatManager : MonoBehaviour
 
     // ==== TEMP TEXTBOXES TO SEE WHAT'S HAPPENING
     public Text temporaryTextBoxForLogging;
-
     public Text tempConnectedTextbox;
 
 
@@ -109,13 +109,6 @@ public class ChatManager : MonoBehaviour
     public void ConnectClient() {
         switch (currentGenState) {
             case GenerationState.TwitchGen: {
-                Debug.Log("channelName type: "+channelName.GetType().ToString());
-                Debug.Log("pocato3rd   type: "+"pocato3rd".GetType().ToString());
-                Debug.Log("pocato3rd equals "+channelName+": "+(channelName.Equals("pocato3rd")));
-                
-                // channelName = "pocato3rd";
-
-                Debug.Log("Attempting to connect to client with channel name \""+channelName+"\"");
                 // Connect our client to Twitch!
                 twitchClient.Connect(channelName);
 
@@ -125,7 +118,7 @@ public class ChatManager : MonoBehaviour
                 
             } break;
             case GenerationState.RNG: {
-                Debug.Log("Can't connect to client because we're in RNG mode");
+                Debug.Log("ChatManager: Cannot connect because we're in RNG mode");
             } break;
         }
     }
@@ -194,9 +187,17 @@ public class ChatManager : MonoBehaviour
         }
     }
 
-    public void CountVotes() {
-        // This will reset the votes
+    public string CountVotes() {
+        // This will reset the votes and return the winner
         Debug.Log("Counting votes... We have "+VotesForOne.ToString()+" for one; "+VotesForTwo.ToString()+" for two");
         voteScript.ResetVotes();
+
+        return "Winner_room";
     }
+
+    public void StartVoting(string delimited_list, char delimiter) {
+        // starts the voting and defines the list of valid things to vote for
+    }
+
+
 }

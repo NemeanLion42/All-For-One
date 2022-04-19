@@ -643,7 +643,7 @@ GameObject:
   - component: {fileID: 891754142}
   - component: {fileID: 891754139}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: ChatManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -690,7 +690,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStats: {fileID: 11400000, guid: f36bea0b1b933bc4481662a03c5dd158, type: 2}
   currentGenState: 0
-  twitchClient: {fileID: 0}
   temporaryTextBoxForLogging: {fileID: 1463310693}
   tempConnectedTextbox: {fileID: 1498014879}
 --- !u!114 &891754142
