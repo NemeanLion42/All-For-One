@@ -6,14 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/OnlineTwitch.unity
-    guid: 10f313894e9e4b54c815c05da4a25268
-  - enabled: 1
     path: Assets/Scenes/StartScene.unity
     guid: b1406ded188b3e74b955ac29d7bc077a
   - enabled: 1
-    path: Assets/Scenes/TwitchVote.unity
-    guid: eee326e1c02e3a049a0eacff725539de
+    path: Assets/Scenes/OnlineTwitch.unity
+    guid: 10f313894e9e4b54c815c05da4a25268
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729

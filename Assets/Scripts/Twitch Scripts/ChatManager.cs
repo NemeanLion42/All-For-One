@@ -7,12 +7,26 @@ using UnityEngine.UI;
 
 public class ChatManager : MonoBehaviour
 {
-    public TwitchClient twitchClient;
+    public PlayerStats playerStats;
+    string channelName;
 
+    // ==== CONTROL FLOW ====
+    public enum GenerationState {
+        TwitchGen,
+        RNG
+    }
+    public GenerationState currentGenState;
+
+
+    // ==== TWITCH VARIABLES FOR CLIENT AND COMMANDS ====
+    public TwitchClient twitchClient;
     private List<ChatCommand> commandsFromChat;
     private IGameCommand[] gameCommands;
 
 
+
+
+    // ==== HANDLE VOTING ====
     private Vote voteScript;
     private int one_votes = 0, two_votes = 0;
     
@@ -34,6 +48,7 @@ public class ChatManager : MonoBehaviour
     }
 
 
+    // ==== TEMP TEXTBOXES TO SEE WHAT'S HAPPENING
     public Text temporaryTextBoxForLogging;
 
     public Text tempConnectedTextbox;
@@ -42,44 +57,74 @@ public class ChatManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        twitchClient = GetComponent<TwitchClient>();
-        if (twitchClient == null) {
-            twitchClient = gameObject.AddComponent<TwitchClient>();
+        // do we have a streamer channel?
+        if (playerStats == null || playerStats.ChannelName == "") {
+            // nope, switch to RNG mode and don't connnect to Twitch
+            currentGenState = GenerationState.RNG;
+        } else {
+            currentGenState = GenerationState.TwitchGen;
+            channelName = playerStats.ChannelName;
+
+            twitchClient = GetComponent<TwitchClient>();
+            if (twitchClient == null) {
+                twitchClient = gameObject.AddComponent<TwitchClient>();
+            }
+
+            // Get all of the valid commands on the game object
+            gameCommands = GetComponents<IGameCommand>();
+            voteScript = GetComponent<Vote>();
+
+            // Initialize a new list of the commands we've received
+            commandsFromChat = new List<ChatCommand>();
         }
 
-        // Get all of the valid commands on the game object
-        gameCommands = GetComponents<IGameCommand>();
-        voteScript = GetComponent<Vote>();
-
-        // Initialize a new list of the commands we've received
-        commandsFromChat = new List<ChatCommand>();
+        
+        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        ProcessCommands();
-        temporaryTextBoxForLogging.text = VotesForOne.ToString() + " for One\n"+VotesForTwo.ToString() + " for Two";
-    
-        if (twitchClient.clientConnected) {
-            tempConnectedTextbox.text = "-- connected --";
-            tempConnectedTextbox.color = new Color(0f, 0.6f, 0f);
-        } else {
-            tempConnectedTextbox.text = "-- disconnected --";
-            tempConnectedTextbox.color = Color.red;
+        switch(currentGenState) {
+            case GenerationState.TwitchGen: {
+                ProcessCommands();
+                temporaryTextBoxForLogging.text = VotesForOne.ToString() + " for One\n"+VotesForTwo.ToString() + " for Two";
+            
+                if (twitchClient.clientConnected) {
+                    tempConnectedTextbox.text = "-- connected --";
+                    tempConnectedTextbox.color = new Color(0f, 0.6f, 0f);
+                } else {
+                    tempConnectedTextbox.text = "-- disconnected --";
+                    tempConnectedTextbox.color = Color.red;
+                }
+
+            } break;
+            case GenerationState.RNG: {
+                tempConnectedTextbox.text = "-- disconnected (RNG mode) --";
+                tempConnectedTextbox.color = Color.red;
+
+            } break;
         }
+        
     }
 
     public void ConnectClient() {
-        Debug.Log("Attempting to connect to client");
+        switch (currentGenState) {
+            case GenerationState.TwitchGen: {
+                Debug.Log("Attempting to connect to client");
 
-        // Connect our client to Twitch!
-        twitchClient.Connect(GetChannelName());
+                // Connect our client to Twitch!
+                twitchClient.Connect(channelName);
 
-        // Add all of the callbacks
-        twitchClient.client.OnMessageReceived += OnMessageReceived;
-        twitchClient.client.OnChatCommandReceived += OnChatCommandReceived;
-
+                // Add all of the callbacks
+                twitchClient.client.OnMessageReceived += OnMessageReceived;
+                twitchClient.client.OnChatCommandReceived += OnChatCommandReceived;
+                
+            } break;
+            case GenerationState.RNG: {
+                Debug.Log("Can't connect to client because we're in RNG mode");
+            } break;
+        }
     }
 
     private void OnChatCommandReceived(object sender, OnChatCommandReceivedArgs e)
@@ -112,16 +157,14 @@ public class ChatManager : MonoBehaviour
     }
 
     public void SendMessageToChat(string message) {
-        twitchClient.SendMessageToChat(message);
+        switch(currentGenState) {
+            case GenerationState.TwitchGen: {
+                twitchClient.SendMessageToChat(message);
+
+            } break;
+        }
+
     }
-
-    string GetChannelName() {
-        string tempChannelName = "POCATO3RD";
-
-        // our TwitchClient needs a lower case channel name, but the client handles that
-        return tempChannelName;
-    }
-
 
     private IGameCommand CommandIsValid(ChatMessage chatMessage) {
         if (chatMessage != null) {
