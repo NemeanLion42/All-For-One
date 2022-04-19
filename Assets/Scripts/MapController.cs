@@ -6,8 +6,11 @@ public class MapController : MonoBehaviour
 {
     public GameObject player;
     public GameObject mainCamera;
-    public Transform roomPrefab;
+    public Dictionary<string, Transform> roomTypes;
+    public Transform[] roomPrefabs;
     public static int roomSize = 30;
+
+    // connect to twitch on start
 
     public GameObject MakeOrFindRoom(Vector3 playerPosition) {
         // Find where room should be
@@ -20,8 +23,14 @@ public class MapController : MonoBehaviour
             if (room.position == roomPosition && room.gameObject != gameObject) return room.gameObject;
         }
         // If there's not, make a new room and return it
-        Transform roomTransform = Instantiate(roomPrefab, roomPosition, Quaternion.identity);
-        roomTransform.SetParent(transform);
-        return roomTransform.gameObject;
+        GameObject newRoom = CreateRoom(roomPosition);
+        newRoom.transform.SetParent(transform);
+        return newRoom;
+    }
+
+    public GameObject CreateRoom(Vector3 roomPosition) {
+        // open poll with list of valid rooms
+        // close poll returns a string
+        return Instantiate(roomPrefabs[Mathf.FloorToInt(Random.Range(0, 2))], roomPosition, Quaternion.identity).gameObject;
     }
 }
