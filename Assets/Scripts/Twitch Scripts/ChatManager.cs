@@ -58,7 +58,7 @@ public class ChatManager : MonoBehaviour
     void Start()
     {
         // do we have a streamer channel?
-        if (playerStats == null || playerStats.ChannelName == "") {
+        if (playerStats == null || playerStats.ChannelName.Equals("")) {
             // nope, switch to RNG mode and don't connnect to Twitch
             currentGenState = GenerationState.RNG;
         } else {
@@ -77,8 +77,6 @@ public class ChatManager : MonoBehaviour
             // Initialize a new list of the commands we've received
             commandsFromChat = new List<ChatCommand>();
         }
-
-        
         
     }
 
@@ -111,8 +109,13 @@ public class ChatManager : MonoBehaviour
     public void ConnectClient() {
         switch (currentGenState) {
             case GenerationState.TwitchGen: {
-                Debug.Log("Attempting to connect to client with channel name \""+channelName+"\"");
+                Debug.Log("channelName type: "+channelName.GetType().ToString());
+                Debug.Log("pocato3rd   type: "+"pocato3rd".GetType().ToString());
+                Debug.Log("pocato3rd equals "+channelName+": "+(channelName.Equals("pocato3rd")));
+                
+                // channelName = "pocato3rd";
 
+                Debug.Log("Attempting to connect to client with channel name \""+channelName+"\"");
                 // Connect our client to Twitch!
                 twitchClient.Connect(channelName);
 
@@ -162,9 +165,9 @@ public class ChatManager : MonoBehaviour
                 twitchClient.SendMessageToChat(message);
 
             } break;
-            default: {
+            case GenerationState.RNG: {
 
-            }break;
+            } break;
         }
 
     }

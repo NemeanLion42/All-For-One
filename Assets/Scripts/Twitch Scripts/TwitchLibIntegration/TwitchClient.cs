@@ -72,6 +72,8 @@ public class TwitchClient : MonoBehaviour
 
     public void Connect(string channelName) {
 
+        channel_name = channelName;
+
         if (client != null && client.IsConnected) {
             Debug.Log("Twitch already connected!");
             return;
@@ -90,7 +92,6 @@ public class TwitchClient : MonoBehaviour
         client.Connect();
 
         Debug.Log("Client connected!");
-        Debug.Log("Client is connected to "+client.JoinedChannels.Count.ToString()+" channels");
     }
 
     private void Client_OnMessageReceived(object sender, OnMessageReceivedArgs e)
@@ -137,7 +138,13 @@ public class TwitchClient : MonoBehaviour
 
     public void SendMessageToChat(string message) {
         if (client != null && client.IsConnected) {
-            client.SendMessage(client.JoinedChannels[0], message);
+
+            if (client.JoinedChannels.Count > 0) {
+                client.SendMessage(client.JoinedChannels[0], message);
+            } else {
+                Debug.Log("The client has not joined any channels :(( Attempting to join channel: "+channel_name);
+                client.JoinChannel(channel_name);
+            }
         } else {
             Debug.Log("Can't send test message because client is not connected");
         }

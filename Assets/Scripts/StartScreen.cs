@@ -27,6 +27,7 @@ public class StartScreen : MonoBehaviour
 
         if (channelNameTMPText != null && playerStats != null) {
             playerStats.ChannelName = channelNameTMPText.text;
+            Debug.Log("channel name read as:"+playerStats.ChannelName);
         }
 
         if (nextScenePath != "") {
