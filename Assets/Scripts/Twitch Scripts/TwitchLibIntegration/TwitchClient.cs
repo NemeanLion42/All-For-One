@@ -19,13 +19,16 @@ public class TwitchClient : MonoBehaviour
     public Client client;
     public Text textbox;
 
+    public float minTimeBetweenMessages = 1f;
+    float lastTimeMessaged = -1f;
+    List<string> messagesToSend = new List<string>();
+
     public bool clientConnected {
         get {
             return (client != null && client.IsConnected);
         }
     }
 
-    private float currentRunTime;
     private string channel_name = "pocato3rd"; // name of your personal Twitch account (lowercase)
     private string bot_username = "all_for_one_cms611";
 
@@ -104,26 +107,11 @@ public class TwitchClient : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.Alpha1)) {
-        //     // if the 1 key is down, send a message!
-        //     client.SendMessage(client.JoinedChannels[0], "This is a test message from the bot");
+        if (messagesToSend.Count > 0 && lastTimeMessaged + Time.time > minTimeBetweenMessages) {
+            lastTimeMessaged = Time.time;
+            SendMessageToChat();
+        }
 
-        //     GetComponent<SpriteRenderer>().color = Color.cyan;
-        // } else if (Input.GetKeyUp(KeyCode.Alpha1)) {
-        //     GetComponent<SpriteRenderer>().color = Color.red;
-        // }
-        // if (client != null && client.IsConnected) {
-        //     textbox.text = "Twitch is connected!\nRuntime: "+currentRunTime.ToString();
-        // } else {
-        //     textbox.text = "Twitch is not connected :(\nRuntime: "+currentRunTime.ToString();
-        // }
-
-        // currentRunTime += Time.deltaTime;
-
-
-
-
-        if (Input.GetKeyDown(KeyCode.Escape)) {QuitGame();}
     }
 
     public void SendTestMessage() {
@@ -136,8 +124,11 @@ public class TwitchClient : MonoBehaviour
         }
     }
 
-    public void SendMessageToChat(string message) {
-        if (client != null && client.IsConnected) {
+    private void SendMessageToChat() {
+        if (client != null && client.IsConnected && messagesToSend.Count > 0) {
+            string message = messagesToSend[0];
+            messagesToSend.RemoveAt(0);
+            
 
             if (client.JoinedChannels.Count > 0) {
                 client.SendMessage(client.JoinedChannels[0], message);
@@ -145,10 +136,11 @@ public class TwitchClient : MonoBehaviour
                 Debug.Log("The client has not joined any channels :(( Attempting to join channel: "+channel_name);
                 client.JoinChannel(channel_name);
             }
-        } else {
-            Debug.Log("Can't send test message because client is not connected");
         }
+    }
 
+    public void SendMessageToChat(string message) {
+        messagesToSend.Add(message);
     }
 
     public void QuitGame() {
