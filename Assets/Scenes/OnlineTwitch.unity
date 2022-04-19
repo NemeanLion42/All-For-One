@@ -688,6 +688,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b80f4d17e87ed644b3c8c95f716de43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStats: {fileID: 11400000, guid: f36bea0b1b933bc4481662a03c5dd158, type: 2}
+  currentGenState: 0
   twitchClient: {fileID: 0}
   temporaryTextBoxForLogging: {fileID: 1463310693}
   tempConnectedTextbox: {fileID: 1498014879}

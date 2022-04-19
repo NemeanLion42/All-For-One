@@ -111,7 +111,7 @@ public class ChatManager : MonoBehaviour
     public void ConnectClient() {
         switch (currentGenState) {
             case GenerationState.TwitchGen: {
-                Debug.Log("Attempting to connect to client");
+                Debug.Log("Attempting to connect to client with channel name \""+channelName+"\"");
 
                 // Connect our client to Twitch!
                 twitchClient.Connect(channelName);
@@ -162,6 +162,9 @@ public class ChatManager : MonoBehaviour
                 twitchClient.SendMessageToChat(message);
 
             } break;
+            default: {
+
+            }break;
         }
 
     }

@@ -90,6 +90,7 @@ public class TwitchClient : MonoBehaviour
         client.Connect();
 
         Debug.Log("Client connected!");
+        Debug.Log("Client is connected to "+client.JoinedChannels.Count.ToString()+" channels");
     }
 
     private void Client_OnMessageReceived(object sender, OnMessageReceivedArgs e)
