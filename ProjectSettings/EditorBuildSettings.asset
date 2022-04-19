@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScene.unity
     guid: b1406ded188b3e74b955ac29d7bc077a
   - enabled: 1
+    path: Assets/Scenes/PlayerMovement.unity
+    guid: 1d720145dbfff734db4cae36c52f830e
+  - enabled: 1
     path: Assets/Scenes/OnlineTwitch.unity
     guid: 10f313894e9e4b54c815c05da4a25268
   - enabled: 1
