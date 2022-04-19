@@ -1,0 +1,9 @@
+Credits
+
+=== TwitchLib ===
+    Big credit to Honest Dan Games for their Beginners Guide to TwitchLib.Unity
+    Found at: https://docs.google.com/document/d/1GfYC3BGW2gnS7GmNE1TwMEdk0QYY2zHccxXp53-WiKM/edit 
+
+
+=== Gravity Font ===
+    Font from Gravity Ace. Posted by John Watson at: https://jotson.itch.io/gravity-pixel-font 
