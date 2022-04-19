@@ -19,9 +19,7 @@ public class RoomController : MonoBehaviour
     }
 
     private void OnTriggerStay2D(Collider2D other) {
-        if (other.gameObject == player.gameObject && other.isTrigger) {
-            cameraController.currentRoom = gameObject;
-        } else if (other.gameObject == cameraController.gameObject) {
+        if (other.gameObject == cameraController.gameObject) {
             foreach (NavMeshAgentController enemy in enemyListController.GetComponentsInChildren<NavMeshAgentController>()) {
                 if (enemy.state == NavMeshAgentController.EnemyState.UNAWARE) {
                     enemy.state = NavMeshAgentController.EnemyState.PURSUIT;

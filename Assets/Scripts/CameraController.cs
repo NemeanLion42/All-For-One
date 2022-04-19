@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
     public Transform player;
     public GameObject currentRoom;
     public SettingsController settings;
+    public MapController mapController;
     private Camera _camera;
     // Start is called before the first frame update
     void Start()
@@ -19,9 +20,6 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        // Wait until the rooms have initialized
-        if (currentRoom == null) return;
-
         // Change camera size to keep one room on screen at a time
         if (_camera.aspect > 1) {
             // width is larger, so maximize height while remaining in the room
@@ -50,6 +48,11 @@ public class CameraController : MonoBehaviour
                                        transform.position.y + intendedMovement.y,
                                        transform.position.z);
         
+        // Figure out which room the player is in
+        if (currentRoom == null || !currentRoom.GetComponent<BoxCollider2D>().bounds.Contains(player.position)) {
+            currentRoom = mapController.MakeOrFindRoom(player.transform.position);
+        }
+
         // Calculate boundaries of current room
         float topBoundary = currentRoom.transform.position.y + roomSize/2;
         float bottomBoundary = currentRoom.transform.position.y - roomSize/2;

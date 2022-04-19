@@ -8,24 +8,20 @@ public class MapController : MonoBehaviour
     public GameObject mainCamera;
     public Transform roomPrefab;
     public static int roomSize = 30;
-    // Start is called before the first frame update
-    void Start()
-    {
-        for (int y = 0; y < 3; y++) {
-            for (int x = 0; x < 3; x++) {
-                Instantiate(roomPrefab, new Vector3(x*roomSize, y*roomSize, 0), Quaternion.identity).SetParent(transform);
-            }
-        }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    private void OnTriggerExit2D(Collider2D other) {
-        // if (other.gameObject == player) {
-        //     Instantiate();
-        // }
+    public GameObject MakeOrFindRoom(Vector3 playerPosition) {
+        // Find where room should be
+        int roomX = Mathf.RoundToInt(playerPosition.x/roomSize) * roomSize;
+        int roomY = Mathf.RoundToInt(playerPosition.y/roomSize) * roomSize;
+        Vector3 roomPosition = new Vector3(roomX, roomY, 0);
+        // If there's a room there, return it
+        Transform[] rooms = gameObject.GetComponentsInChildren<Transform>();
+        foreach (Transform room in rooms) {
+            if (room.position == roomPosition && room.gameObject != gameObject) return room.gameObject;
+        }
+        // If there's not, make a new room and return it
+        Transform roomTransform = Instantiate(roomPrefab, roomPosition, Quaternion.identity);
+        roomTransform.SetParent(transform);
+        return roomTransform.gameObject;
     }
 }
