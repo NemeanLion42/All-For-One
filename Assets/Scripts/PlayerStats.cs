@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/PlayerStatsScriptableObj", order = 1)]
 public class PlayerStats : ScriptableObject
 {
-    string channel_name;
+    string channel_name = "pocato3rd";
     public string ChannelName {
         get {
             return channel_name;

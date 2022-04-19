@@ -31,30 +31,6 @@ public class ChatManager : MonoBehaviour
     // ==== HANDLE VOTING ====
     private Vote voteScript;
     private string[] votingOptions;
-    private int one_votes = 0, two_votes = 0;
-    
-    public int VotesForOne {
-        get {
-            return one_votes;
-        }
-        set {
-            one_votes = value;
-        }
-    }
-    public int VotesForTwo {
-        get {
-            return two_votes;
-        }
-        set {
-            two_votes = value;
-        }
-    }
-
-
-    // ==== TEMP TEXTBOXES TO SEE WHAT'S HAPPENING
-    public Text temporaryTextBoxForLogging;
-    public Text tempConnectedTextbox;
-
 
     // Start is called before the first frame update
     void Start()
@@ -84,36 +60,34 @@ public class ChatManager : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            // 1 key was pressed down
-            Debug.Log("Opening voting");
-            StartVoting("sewer,charge port,home", ',');
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) {
-            // 2 key was pressed down
-            Debug.Log("Closing vote and counting");
-            Debug.Log("Winner: "+CountVotes());
-        }
+        // if (Input.GetKeyDown(KeyCode.Alpha1)) {
+        //     // 1 key was pressed down
+        //     Debug.Log("Opening voting");
+        //     StartVoting("sewer,charge port,home", ',');
+        // }
+        // if (Input.GetKeyDown(KeyCode.Alpha2)) {
+        //     // 2 key was pressed down
+        //     Debug.Log("Closing vote and counting");
+        //     Debug.Log("Winner: "+CountVotes());
+        // }
     }
     void FixedUpdate()
     {
         switch(currentGenState) {
             case GenerationState.TwitchGen: {
                 ProcessCommands();
-                temporaryTextBoxForLogging.text = VotesForOne.ToString() + " for One\n"+VotesForTwo.ToString() + " for Two";
+                // temporaryTextBoxForLogging.text = VotesForOne.ToString() + " for One\n"+VotesForTwo.ToString() + " for Two";
             
-                if (twitchClient.clientConnected) {
-                    tempConnectedTextbox.text = "-- connected --";
-                    tempConnectedTextbox.color = new Color(0f, 0.6f, 0f);
-                } else {
-                    tempConnectedTextbox.text = "-- disconnected --";
-                    tempConnectedTextbox.color = Color.red;
-                }
+                // if (twitchClient.clientConnected) {
+                //     tempConnectedTextbox.text = "-- connected --";
+                //     tempConnectedTextbox.color = new Color(0f, 0.6f, 0f);
+                // } else {
+                //     tempConnectedTextbox.text = "-- disconnected --";
+                //     tempConnectedTextbox.color = Color.red;
+                // }
 
             } break;
             case GenerationState.RNG: {
-                tempConnectedTextbox.text = "-- disconnected (RNG mode) --";
-                tempConnectedTextbox.color = Color.red;
 
             } break;
         }        
