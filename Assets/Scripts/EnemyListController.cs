@@ -7,6 +7,7 @@ public class EnemyListController : MonoBehaviour
     RoomController roomController;
     GameObject player;
     public Transform enemyPrefab;
+    public bool spawnEnemies = true; 
     Vector3[] spawnLocations = new Vector3[] {
         new Vector3(0, 5, 0),
         new Vector3(-10, 0, 0),
@@ -21,10 +22,13 @@ public class EnemyListController : MonoBehaviour
 
         roomController = GetComponentInParent<RoomController>();
         player = roomController.player;
-        foreach (Vector3 loc in spawnLocations) {
-            Transform newEnemy = Instantiate(enemyPrefab, loc + transform.position, Quaternion.identity);
-            newEnemy.SetParent(transform);
-            newEnemy.GetComponent<NavMeshAgentController>().target = player.transform;
+
+        if (spawnEnemies) {
+            foreach (Vector3 loc in spawnLocations) {
+                Transform newEnemy = Instantiate(enemyPrefab, loc + transform.position, Quaternion.identity);
+                newEnemy.SetParent(transform);
+                newEnemy.GetComponent<NavMeshAgentController>().target = player.transform;
+            }
         }
     }
 
