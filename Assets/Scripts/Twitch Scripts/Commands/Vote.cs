@@ -16,7 +16,6 @@ public class Vote : MonoBehaviour, IGameCommand
     private HashSet<string> usersCountedInVote = new HashSet<string>();
 
     public bool Execute(string username, List<string> arguments, ChatManager cm=null) {
-
         if (oneVotePerUser && usersCountedInVote.Contains(username)) {
             return false; // vote was not counted
         } else {
@@ -28,9 +27,8 @@ public class Vote : MonoBehaviour, IGameCommand
 
             string concat_args = "";
             foreach (string arg in arguments) {concat_args += arg + " ";}
-            concat_args = concat_args.Trim();
-
-            if (votes.ContainsKey(concat_args.Trim())) {
+            concat_args = concat_args.Trim().ToLower();
+            if (votes.ContainsKey(concat_args)) {
                 votes[concat_args]++;
             }
         }
@@ -53,7 +51,10 @@ public class Vote : MonoBehaviour, IGameCommand
         string max_key = null;
         int max_votes = 0;
 
+        string voteTallyString = "";
+
         foreach (string k in votes.Keys) {
+            voteTallyString += k + ": " + votes[k] + "\n";
             int num_votes = votes[k];
 
             if (num_votes > max_votes) {
@@ -61,6 +62,7 @@ public class Vote : MonoBehaviour, IGameCommand
                 max_votes = num_votes;
             }
         }
+        // Debug.Log(voteTallyString);
 
         return max_key;
     }

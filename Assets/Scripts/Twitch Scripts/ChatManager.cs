@@ -167,7 +167,6 @@ public class ChatManager : MonoBehaviour
 
     private void ProcessCommands() {
         // Should this run through all and execute?
-
         if (commandsFromChat.Count > 0) {
             commandsFromChat[0].Execute(this);
             commandsFromChat.RemoveAt(0);
@@ -182,6 +181,10 @@ public class ChatManager : MonoBehaviour
             case GenerationState.TwitchGen: {
                 Debug.Log("Need to implement RNG if there are split votes");
                 winning_room = voteScript.CountVotes();
+
+                // Jack's addition, feel free to change
+                if (winning_room == null) winning_room = votingOptions[UnityEngine.Random.Range(0, votingOptions.Length)];
+
             } break;
             case GenerationState.RNG: {
                 int rand_idx = UnityEngine.Random.Range(0, votingOptions.Length);
