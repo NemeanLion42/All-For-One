@@ -62,16 +62,16 @@ public class ChatManager : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            // 1 key was pressed down
-            Debug.Log("Opening voting");
-            StartVoting("sewer,charge port,home", ',');
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) {
-            // 2 key was pressed down
-            Debug.Log("Closing vote and counting");
-            Debug.Log("Winner: "+CountVotes());
-        }
+        // if (Input.GetKeyDown(KeyCode.Alpha1)) {
+        //     // 1 key was pressed down
+        //     Debug.Log("Opening voting");
+        //     StartVoting("sewer,charge port,home", ',');
+        // }
+        // if (Input.GetKeyDown(KeyCode.Alpha2)) {
+        //     // 2 key was pressed down
+        //     Debug.Log("Closing vote and counting");
+        //     Debug.Log("Winner: "+CountVotes());
+        // }
     }
     void FixedUpdate()
     {
