@@ -95,7 +95,7 @@ public class ChatManager : MonoBehaviour
         }        
     }
 
-    public void ConnectClient() {
+    public bool ConnectClient() {
         switch (currentGenState) {
             case GenerationState.TwitchGen: {
                 // Connect our client to Twitch!
@@ -104,12 +104,17 @@ public class ChatManager : MonoBehaviour
                 // Add all of the callbacks
                 twitchClient.client.OnMessageReceived += OnMessageReceived;
                 twitchClient.client.OnChatCommandReceived += OnChatCommandReceived;
+
+                return true;
                 
             } break;
             case GenerationState.RNG: {
                 Debug.Log("ChatManager: Cannot connect because we're in RNG mode");
+
             } break;
         }
+
+        return false;
     }
 
     private void OnChatCommandReceived(object sender, OnChatCommandReceivedArgs e)

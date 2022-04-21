@@ -43,11 +43,11 @@ public class TwitchClient : MonoBehaviour
     }
 
 
-    public void Connect() {
+    public bool Connect() {
 
         if (client != null && client.IsConnected) {
             Debug.Log("Twitch already connected!");
-            return;
+            return true;
         }
 
         Debug.Log("Running the Twitch Client!");
@@ -68,8 +68,9 @@ public class TwitchClient : MonoBehaviour
         // connect our bot to the channel
         client.Connect();
 
-
         Debug.Log("Client Connected!");
+        
+        return true;
 
     }
 
