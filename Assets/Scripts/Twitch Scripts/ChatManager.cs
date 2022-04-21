@@ -55,21 +55,23 @@ public class ChatManager : MonoBehaviour
             // Initialize a new list of the commands we've received
             commandsFromChat = new List<ChatCommand>();
         }
+
+        Debug.Log("Open voting with 1; Close with 2");
         
     }
 
     // Update is called once per frame
     void Update() {
-        // if (Input.GetKeyDown(KeyCode.Alpha1)) {
-        //     // 1 key was pressed down
-        //     Debug.Log("Opening voting");
-        //     StartVoting("sewer,charge port,home", ',');
-        // }
-        // if (Input.GetKeyDown(KeyCode.Alpha2)) {
-        //     // 2 key was pressed down
-        //     Debug.Log("Closing vote and counting");
-        //     Debug.Log("Winner: "+CountVotes());
-        // }
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            // 1 key was pressed down
+            Debug.Log("Opening voting");
+            StartVoting("sewer,charge port,home", ',');
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2)) {
+            // 2 key was pressed down
+            Debug.Log("Closing vote and counting");
+            Debug.Log("Winner: "+CountVotes());
+        }
     }
     void FixedUpdate()
     {
