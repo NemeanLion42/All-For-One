@@ -5,12 +5,25 @@ using UnityEngine;
 public class MapController : MonoBehaviour
 {
     public GameObject player;
+    public ChatManager chatManager;
     public GameObject mainCamera;
-    public Dictionary<string, Transform> roomTypes;
     public Transform[] roomPrefabs;
     public static int roomSize = 30;
 
-    // connect to twitch on start
+    private void CallStartVoting() {
+        char delimiter = '\n';
+        string[] names = new string[roomPrefabs.Length];
+        for (int i = 0; i < names.Length; i++) {
+            names[i] = roomPrefabs[i].gameObject.name;
+        }
+        string allNames = string.Join(delimiter.ToString(), names);
+        chatManager.StartVoting(allNames.ToLower(), delimiter);
+    }
+
+    private void Start() {
+        chatManager.ConnectClient();
+        CallStartVoting();
+    }
 
     public GameObject MakeOrFindRoom(Vector3 playerPosition) {
         // Find where room should be
@@ -29,8 +42,19 @@ public class MapController : MonoBehaviour
     }
 
     public GameObject CreateRoom(Vector3 roomPosition) {
-        // open poll with list of valid rooms
-        // close poll returns a string
-        return Instantiate(roomPrefabs[Mathf.FloorToInt(Random.Range(0, 2))], roomPosition, Quaternion.identity).gameObject;
+        string roomToGenerate = chatManager.CountVotes();
+        Transform newRoomPrefab = null;
+        foreach (Transform room in roomPrefabs) {
+            if (room.gameObject.name.ToLower() == roomToGenerate) {
+                newRoomPrefab = room;
+                break;
+            }
+        }
+        if (newRoomPrefab == null) {
+            throw new System.Exception("no room named " + roomToGenerate);
+        }
+        GameObject newRoom = Instantiate(newRoomPrefab, roomPosition, Quaternion.identity).gameObject;
+        CallStartVoting();
+        return newRoom;
     }
 }
