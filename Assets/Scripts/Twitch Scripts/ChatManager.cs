@@ -30,10 +30,10 @@ public class ChatManager : MonoBehaviour
 
     // ==== HANDLE VOTING ====
     private Vote voteScript;
+    private int voteRoundNum = 1;
     private string[] votingOptions;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // do we have a streamer channel?
         if (playerStats == null || playerStats.ChannelName.Equals("")) {
@@ -55,6 +55,8 @@ public class ChatManager : MonoBehaviour
             // Initialize a new list of the commands we've received
             commandsFromChat = new List<ChatCommand>();
         }
+
+        // Debug.Log("Open voting with 1; Close with 2");
         
     }
 
@@ -93,21 +95,26 @@ public class ChatManager : MonoBehaviour
         }        
     }
 
-    public void ConnectClient() {
+    public bool ConnectClient() {
         switch (currentGenState) {
             case GenerationState.TwitchGen: {
                 // Connect our client to Twitch!
-                twitchClient.Connect(channelName);
+                bool didWeConnect = twitchClient.Connect(channelName);
 
                 // Add all of the callbacks
                 twitchClient.client.OnMessageReceived += OnMessageReceived;
                 twitchClient.client.OnChatCommandReceived += OnChatCommandReceived;
+
+                return true;
                 
-            } break;
+            }
             case GenerationState.RNG: {
                 Debug.Log("ChatManager: Cannot connect because we're in RNG mode");
+
             } break;
         }
+
+        return false;
     }
 
     private void OnChatCommandReceived(object sender, OnChatCommandReceivedArgs e)
@@ -177,6 +184,14 @@ public class ChatManager : MonoBehaviour
         // This will count the votes and return the winner
         string winning_room = "";
 
+        if (voteRoundNum == 0) {
+            Debug.Log("Returning first option as start room");
+            voteRoundNum++;
+            return votingOptions[0];
+        }
+
+        voteRoundNum++;
+
         switch (currentGenState) {
             case GenerationState.TwitchGen: {
                 Debug.Log("Need to implement RNG if there are split votes");
@@ -200,12 +215,14 @@ public class ChatManager : MonoBehaviour
         string[] options = delimited_list.Split(delimiter);
         votingOptions = options;
 
+
+
         // Don't continue if using RNG
-        if (currentGenState == GenerationState.RNG) return;
+        if (currentGenState == GenerationState.RNG || voteRoundNum == 0) return;
 
         voteScript.SetVotingOptions(delimited_list, delimiter);
 
-        string msg_to_send = "A new voting round has opened! Your options are: ";
+        string msg_to_send = "Voting round "+voteRoundNum+" has opened! Your options are: ";
 
         if (options.Length > 0) {
             for (int idx = 0; idx < options.Length - 1; idx++){

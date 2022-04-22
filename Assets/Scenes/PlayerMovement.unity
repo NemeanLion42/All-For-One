@@ -512,6 +512,7 @@ MonoBehaviour:
   player: {fileID: 1473875738}
   chatManager: {fileID: 786611183}
   mainCamera: {fileID: 901920174}
+  startRoomPrefab: {fileID: 8484017471769274304, guid: 0b2eb09110137b74dbcb3b7817a33d5e, type: 3}
   roomPrefabs:
   - {fileID: 8484017471769274304, guid: dd76516317095af46b9e0cc0bc53c51e, type: 3}
   - {fileID: 8484017471769274304, guid: 08d404e5e1d06274c8d1ac86a820f0bc, type: 3}
