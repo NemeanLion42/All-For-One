@@ -7,7 +7,7 @@ public class EnemyListController : MonoBehaviour
     RoomController roomController;
     GameObject player;
     public Transform enemyPrefab;
-    Vector3[] spawnLocations = new Vector3[] {
+    public Vector3[] spawnLocations = new Vector3[] {
         new Vector3(0, 5, 0),
         new Vector3(-10, 0, 0),
         new Vector3(5, 0, 0)};

@@ -7,8 +7,11 @@ public class MapController : MonoBehaviour
     public GameObject player;
     public ChatManager chatManager;
     public GameObject mainCamera;
+    public Transform startRoomPrefab;
     public Transform[] roomPrefabs;
     public static int roomSize = 30;
+
+    private bool startRoom = true;
 
     private void CallStartVoting() {
         char delimiter = '\n';
@@ -20,8 +23,12 @@ public class MapController : MonoBehaviour
         chatManager.StartVoting(allNames.ToLower(), delimiter);
     }
 
+    void Awake() {
+        // should be run before Start()
+        bool didClientConnect = chatManager.ConnectClient();
+    }
+
     private void Start() {
-        chatManager.ConnectClient();
         CallStartVoting();
     }
 
@@ -42,19 +49,28 @@ public class MapController : MonoBehaviour
     }
 
     public GameObject CreateRoom(Vector3 roomPosition) {
-        string roomToGenerate = chatManager.CountVotes();
-        Transform newRoomPrefab = null;
-        foreach (Transform room in roomPrefabs) {
-            if (room.gameObject.name.ToLower() == roomToGenerate) {
-                newRoomPrefab = room;
-                break;
+        if (startRoom) {
+            // chatManager.CountVotes();
+            GameObject newRoom = Instantiate(startRoomPrefab, roomPosition, Quaternion.identity).gameObject;
+            CallStartVoting();
+
+            startRoom = false;
+            return newRoom;
+        } else {
+            string roomToGenerate = chatManager.CountVotes();
+            Transform newRoomPrefab = null;
+            foreach (Transform room in roomPrefabs) {
+                if (room.gameObject.name.ToLower() == roomToGenerate) {
+                    newRoomPrefab = room;
+                    break;
+                }
             }
+            if (newRoomPrefab == null) {
+                throw new System.Exception("no room named " + roomToGenerate);
+            }
+            GameObject newRoom = Instantiate(newRoomPrefab, roomPosition, Quaternion.identity).gameObject;
+            CallStartVoting();
+            return newRoom;
         }
-        if (newRoomPrefab == null) {
-            throw new System.Exception("no room named " + roomToGenerate);
-        }
-        GameObject newRoom = Instantiate(newRoomPrefab, roomPosition, Quaternion.identity).gameObject;
-        CallStartVoting();
-        return newRoom;
     }
 }

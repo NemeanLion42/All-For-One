@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   channelNameInput: {fileID: 1796240246}
   playerStats: {fileID: 11400000, guid: f36bea0b1b933bc4481662a03c5dd158, type: 2}
-  nextScenePath: Assets/Scenes/OnlineTwitch.unity
+  nextScenePath: Assets/Scenes/PlayerMovement.unity
 --- !u!4 &213916846
 Transform:
   m_ObjectHideFlags: 0
