@@ -17,7 +17,7 @@ public class ChatManager : MonoBehaviour
         RNG
     }
 
-    public GenerationState currentGenState = GenerationState.TwitchGen;
+    public GenerationState currentGenState = GenerationState.RNG;
 
 
     // ==== TWITCH VARIABLES FOR CLIENT AND COMMANDS ====
@@ -38,8 +38,10 @@ public class ChatManager : MonoBehaviour
         // do we have a streamer channel?
         if (playerStats == null || playerStats.ChannelName.Equals("")) {
             // nope, switch to RNG mode and don't connnect to Twitch
+            Debug.Log("Entered RNG mode!");
             currentGenState = GenerationState.RNG;
         } else {
+            Debug.Log("Channel name is: "+playerStats.ChannelName);
             currentGenState = GenerationState.TwitchGen;
             channelName = playerStats.ChannelName;
 
@@ -96,6 +98,8 @@ public class ChatManager : MonoBehaviour
     }
 
     public bool ConnectClient() {
+        if (twitchClient == null) return false;
+
         switch (currentGenState) {
             case GenerationState.TwitchGen: {
                 // Connect our client to Twitch!

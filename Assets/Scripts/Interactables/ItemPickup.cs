@@ -26,11 +26,12 @@ public class ItemPickup : MonoBehaviour, IObjectTriggered
         switch (pickupType) {
             case PickupType.health: {
                 // the object is health! add to player stat
+                Debug.Log("Health picked up!");
                 break;
             }
             case PickupType.money: {
                 // the object is money! add to player stat
-
+                Debug.Log("Money Picked up!");
                 break;
             }
             default: {
