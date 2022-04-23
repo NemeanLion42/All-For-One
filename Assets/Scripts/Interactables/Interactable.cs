@@ -4,12 +4,19 @@ using UnityEngine;
 using TMPro;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class DialogueInteractable : MonoBehaviour
+[RequireComponent(typeof(IObjectTriggered))]
+public class Interactable : MonoBehaviour
 {
 
     public GameObject interactionKey;
     public char keyToPress = 'E';
     KeyCode inputKeyCode;
+
+    public enum InteractionType {
+        WhenNear,
+        WhenKeyPressed
+    }
+    public InteractionType interactionType = InteractionType.WhenKeyPressed;
 
     bool showingInteractionKey = true;
 
@@ -21,6 +28,8 @@ public class DialogueInteractable : MonoBehaviour
         OutOfRange
     }
     InteractionState currentState = InteractionState.OutOfRange;
+
+    IObjectTriggered scriptToTrigger;
 
 
     // Start is called before the first frame update
@@ -35,6 +44,8 @@ public class DialogueInteractable : MonoBehaviour
         if (TMP_KeyToPress != null) {
             TMP_KeyToPress.text = keyToPress.ToString();
         }
+
+        scriptToTrigger = GetComponent<IObjectTriggered>();
     }
 
     void Awake() {
@@ -61,16 +72,16 @@ public class DialogueInteractable : MonoBehaviour
         
     }
 
-    // void OnTriggerEnter2D(Collider2D collider2D) {
-    //     Debug.Log("Entered!");
-    // }
-
     void OnTriggerEnter2D(Collider2D collider2D) {
         playerScript = collider2D.gameObject.GetComponent<PlayerMovementController>();
 
         if (playerScript != null) {
+
+            if (interactionType == InteractionType.WhenNear) {
+                Execute();
+            }
+
             currentState = InteractionState.InRange;
-            Debug.Log("Entered!");
         }
     }
 
@@ -78,13 +89,21 @@ public class DialogueInteractable : MonoBehaviour
 
         if (collider2D.gameObject.GetComponent<PlayerMovementController>() != null) {
             currentState = InteractionState.OutOfRange;
-            Debug.Log("Exited :(");
+            LeftRange();
 
             playerScript = null;
         }
     }
 
     void Execute() {
-        Debug.Log("I'm executing!!");
+        if (!scriptToTrigger.triggered) {
+            scriptToTrigger.TriggerObject();
+        }
+    }
+
+    void LeftRange() {
+        if (scriptToTrigger.triggered) {
+            scriptToTrigger.LeftRange();
+        }
     }
 }
