@@ -20,7 +20,7 @@ public class TwitchClient : MonoBehaviour
     public Text textbox;
 
     public float minTimeBetweenMessages = 1f;
-    float lastTimeMessaged = -1f;
+    float lastTimeMessaged = -10f;
     List<string> messagesToSend = new List<string>();
 
     public bool clientConnected {
@@ -43,11 +43,11 @@ public class TwitchClient : MonoBehaviour
     }
 
 
-    public void Connect() {
+    public bool Connect() {
 
         if (client != null && client.IsConnected) {
             Debug.Log("Twitch already connected!");
-            return;
+            return true;
         }
 
         Debug.Log("Running the Twitch Client!");
@@ -68,18 +68,19 @@ public class TwitchClient : MonoBehaviour
         // connect our bot to the channel
         client.Connect();
 
-
         Debug.Log("Client Connected!");
+        
+        return true;
 
     }
 
-    public void Connect(string channelName) {
+    public bool Connect(string channelName) {
 
         channel_name = channelName;
 
         if (client != null && client.IsConnected) {
             Debug.Log("Twitch already connected!");
-            return;
+            return true;
         }
 
         // set up the bot and tell it which channel to join
@@ -92,9 +93,9 @@ public class TwitchClient : MonoBehaviour
         // client.OnMessageReceived += Client_OnMessageReceived;
 
         // connect our bot to the channel
-        client.Connect();
-
-        Debug.Log("Client connected!");
+        bool clientConnected = client.Connect();
+        Debug.Log("Client connected");
+        return clientConnected;
     }
 
     private void Client_OnMessageReceived(object sender, OnMessageReceivedArgs e)
@@ -112,6 +113,8 @@ public class TwitchClient : MonoBehaviour
             SendMessageToChat();
         }
 
+        // Debug.Log("Subscribed to channel: "+(client.JoinedChannels.Count != 0));
+
     }
 
     public void SendTestMessage() {
@@ -126,20 +129,20 @@ public class TwitchClient : MonoBehaviour
 
     private void SendMessageToChat() {
         if (client != null && client.IsConnected && messagesToSend.Count > 0) {
-            string message = messagesToSend[0];
-            messagesToSend.RemoveAt(0);
-            
-
+        
             if (client.JoinedChannels.Count > 0) {
+                string message = messagesToSend[0];
+                messagesToSend.RemoveAt(0);
+                
+                Debug.Log("Removed message from queue: "+message);
                 client.SendMessage(client.JoinedChannels[0], message);
-            } else {
-                Debug.Log("The client has not joined any channels :(( Attempting to join channel: "+channel_name);
-                client.JoinChannel(channel_name);
+                return;
             }
         }
     }
 
     public void SendMessageToChat(string message) {
+        Debug.Log("Adding message to queue");
         messagesToSend.Add(message);
     }
 
