@@ -6,7 +6,11 @@ using TMPro;
 
 public class DialogueBox : MonoBehaviour, IObjectTriggered
 {
-    public string textToWrite = "test";
+    public string[] textToWrite = new string[] {
+        "test text",
+        "oof"
+    };
+    public bool loopText = true;
 
     bool _triggered = false;
     public bool triggered {
@@ -17,6 +21,8 @@ public class DialogueBox : MonoBehaviour, IObjectTriggered
             return _triggered;
         }
     }
+
+    int text_idx = 0;
 
     Canvas uiCanvas;
     public GameObject dialoguePrefab;
@@ -63,7 +69,17 @@ public class DialogueBox : MonoBehaviour, IObjectTriggered
         dialogueBackground = dialogueInstance.GetComponentInChildren<Image>();
 
         // make sure the dialogue box says the dialogue
-        WriteText(textToWrite);
+        WriteText(textToWrite[text_idx]);
+
+        // are we at the end of the list?
+        if (text_idx == textToWrite.Length - 1) {
+            // yes! loop the text if the bool is active, otherwise let it be
+            if (loopText) {text_idx = 0;}
+        
+        } else {
+            // no, increment through
+            text_idx++;
+        }
     }
 
     public void LeftRange() {
