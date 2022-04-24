@@ -345,7 +345,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4564525928603474244, guid: 84d76be63d87ef24db6f8a85ea0c53d3, type: 3}
       propertyPath: pickupType
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4564525928603474245, guid: 84d76be63d87ef24db6f8a85ea0c53d3, type: 3}
       propertyPath: m_Name
@@ -1134,6 +1134,26 @@ PrefabInstance:
     - target: {fileID: 7180562626387200323, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7180562626387200351, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
+      propertyPath: loopText
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7180562626387200351, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
+      propertyPath: textToWrite.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7180562626387200351, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
+      propertyPath: textToWrite.Array.data[0]
+      value: Red blobs are fully charged batteries while purple blobs are half charges.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7180562626387200351, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
+      propertyPath: textToWrite.Array.data[1]
+      value: Yellow blobs are gears but I don't think you have any use for them yet
+      objectReference: {fileID: 0}
+    - target: {fileID: 7180562626387200351, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
+      propertyPath: textToWrite.Array.data[2]
+      value: I don't have anything else to say
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
