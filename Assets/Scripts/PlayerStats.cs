@@ -12,10 +12,17 @@ public class PlayerStats : ScriptableObject
     public delegate void UpdateMaxHealth(float newMaxHealth);
     public static event UpdateMaxHealth OnMaxHealthUpdate;
 
+    public delegate void UpdateCoins(int newCoins);
+    public static event UpdateCoins OnCoinUpdate;
+
     string channel_name = "";
 
     float playerHealth = 1f;
     float playerMaxHealth = 4f;
+
+
+    public int startingCoins = 0;
+    int playerCoins = 0;
 
     public string ChannelName {
         get {
@@ -45,6 +52,17 @@ public class PlayerStats : ScriptableObject
         }
         get {
             return playerMaxHealth;
+        }
+    }
+
+    public int PlayerCoins {
+        set {
+            playerCoins = value;
+
+            if (OnCoinUpdate != null) OnCoinUpdate.Invoke(playerCoins);
+        }
+        get {
+            return playerCoins;
         }
     }
 }

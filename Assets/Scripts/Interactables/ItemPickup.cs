@@ -38,7 +38,7 @@ public class ItemPickup : MonoBehaviour, IObjectTriggered
             }
             case PickupType.money: {
                 // the object is money! add to player stat
-                Debug.Log("Money Picked up!");
+                playerStats.PlayerCoins += 5;
                 break;
             }
             default: {
