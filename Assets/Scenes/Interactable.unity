@@ -485,7 +485,8 @@ MonoBehaviour:
   mainCamera: {fileID: 1703127258}
   startRoomPrefab: {fileID: 8484017471769274304, guid: 0b2eb09110137b74dbcb3b7817a33d5e, type: 3}
   roomPrefabs:
-  - {fileID: 8484017471769274304, guid: 77182eb356c4e7243a1a5af22009fc23, type: 3}
+  - {fileID: 8484017471769274304, guid: dd76516317095af46b9e0cc0bc53c51e, type: 3}
+  - {fileID: 8484017471769274304, guid: 08d404e5e1d06274c8d1ac86a820f0bc, type: 3}
 --- !u!4 &987024313
 Transform:
   m_ObjectHideFlags: 0
