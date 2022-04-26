@@ -24,7 +24,7 @@ public class EnemyListController : MonoBehaviour
         foreach (Vector3 loc in spawnLocations) {
             Transform newEnemy = Instantiate(enemyPrefab, loc + transform.position, Quaternion.identity);
             newEnemy.SetParent(transform);
-            newEnemy.GetComponent<NavMeshAgentController>().target = player.transform;
+            newEnemy.GetComponent<EnemyController>().target = player.transform;
         }
     }
 
