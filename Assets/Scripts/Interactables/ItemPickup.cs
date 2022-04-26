@@ -7,9 +7,11 @@ public class ItemPickup : MonoBehaviour, IObjectTriggered
 
     public enum PickupType {
         health,
+        halfHealth,
         money
     }
     public PickupType pickupType = PickupType.health;
+    public PlayerStats playerStats;
 
     public bool triggered {
         set {
@@ -27,13 +29,16 @@ public class ItemPickup : MonoBehaviour, IObjectTriggered
             case PickupType.health: {
                 // the object is health! add to player stat
                 Debug.Log("Health picked up!");
-                // sound to indicate battery increase
+                playerStats.PlayerHealth += 1.0f;
+                break;
+            }
+            case PickupType.halfHealth: {
+                playerStats.PlayerHealth += 0.5f;
                 break;
             }
             case PickupType.money: {
                 // the object is money! add to player stat
-                Debug.Log("Money Picked up!");
-                // sound to indicate money transaction
+                playerStats.PlayerCoins += 5;
                 break;
             }
             default: {

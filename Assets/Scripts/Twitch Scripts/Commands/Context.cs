@@ -41,8 +41,6 @@ public class Context : MonoBehaviour, IGameCommand
             }
             
         }
-
-        Debug.Log(contextHash.Count);
     }
 
     // Update is called once per frame
