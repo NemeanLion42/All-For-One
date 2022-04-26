@@ -6,17 +6,8 @@ using UnityEditor;
 public class PlayerMovementController : MonoBehaviour
 {
     public SettingsController settings;
-    public float startMaxHealth = 5.0f;
-    public float startHealth = 2.0f;
     private Rigidbody2D _rigidbody;
     private PlayerStats playerStats;
-    
-    void Awake() {
-        playerStats = (PlayerStats)AssetDatabase.LoadAssetAtPath("Assets/Scripts/StreamerStats.asset", typeof(PlayerStats));
-
-        playerStats.PlayerMaxHealth = startMaxHealth;
-        playerStats.PlayerHealth = startHealth;
-    }
 
     // Start is called before the first frame update
     void Start()

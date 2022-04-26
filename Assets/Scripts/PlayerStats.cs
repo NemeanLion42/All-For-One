@@ -17,11 +17,15 @@ public class PlayerStats : ScriptableObject
 
     string channel_name = "";
 
+    // accessed by HealthUI to initialize on play
+    public float startingPlayerHealth = 1f;
+    public float startingPlayerMaxHealth = 3f;
+
     float playerHealth = 1f;
     float playerMaxHealth = 4f;
 
 
-    public int startingCoins = 0;
+    public int startingCoins = 0; // accessed by GearsUI to initialize on play
     int playerCoins = 0;
 
     public string ChannelName {
