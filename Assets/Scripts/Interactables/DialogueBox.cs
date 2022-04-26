@@ -55,6 +55,7 @@ public class DialogueBox : MonoBehaviour, IObjectTriggered
     } 
     public void TriggerObject() {
         triggered = true;
+        // if we want an audio clip that sounds like typing, it would likely trigger here
 
         // Create a dialogue box instance and set it's parent to the canvas
         dialogueInstance = Instantiate(dialoguePrefab, Vector3.zero, Quaternion.identity);
@@ -74,6 +75,7 @@ public class DialogueBox : MonoBehaviour, IObjectTriggered
         // are we at the end of the list?
         if (text_idx == textToWrite.Length - 1) {
             // yes! loop the text if the bool is active, otherwise let it be
+            // cut off typing audio/loop here?
             if (loopText) {text_idx = 0;}
         
         } else {

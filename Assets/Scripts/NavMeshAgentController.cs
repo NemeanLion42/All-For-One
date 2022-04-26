@@ -43,6 +43,8 @@ public class NavMeshAgentController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject == target.gameObject) {
             state = EnemyState.ATTACKING;
+            // play sound for a hit
+            // should trigger battery reduction
         }
     }
     private void OnTriggerExit2D(Collider2D other) {

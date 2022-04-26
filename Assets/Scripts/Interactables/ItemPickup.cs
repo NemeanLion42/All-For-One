@@ -27,11 +27,13 @@ public class ItemPickup : MonoBehaviour, IObjectTriggered
             case PickupType.health: {
                 // the object is health! add to player stat
                 Debug.Log("Health picked up!");
+                // sound to indicate battery increase
                 break;
             }
             case PickupType.money: {
                 // the object is money! add to player stat
                 Debug.Log("Money Picked up!");
+                // sound to indicate money transaction
                 break;
             }
             default: {
