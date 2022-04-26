@@ -1,7 +1,9 @@
 // this is a comment! 
 // our structure - room_name:description
-charge_port:Charge ports are healing stations
-weapons_depot:Weapons depots are item stores
-sewer:the sewer has some enemies but a good reward
-puzzle:puzzle rooms contains rewards behind a puzzle   
-home:a warm cozy fireplace
+charge_port:A place to recharge and get ready for the challenges ahead
+sewer:Danger lurks around every slimy corner… well, no risk no reward!
+puzzle:Interactive challenge that may lead to a reward
+cafe:Could that be the light at the end of the tunnel?
+monster:Tough opponent, but they only put those where there’s something important to protect, right?
+junkyard:Dumpster diving!
+break_room:The Departed seem to have spent a lot of time here…
