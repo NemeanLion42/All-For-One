@@ -20,9 +20,9 @@ public class RoomController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject == cameraController.gameObject) {
-            foreach (NavMeshAgentController enemy in enemyListController.GetComponentsInChildren<NavMeshAgentController>()) {
-                if (enemy.state == NavMeshAgentController.EnemyState.UNAWARE) {
-                    enemy.state = NavMeshAgentController.EnemyState.PURSUIT;
+            foreach (EnemyController enemy in enemyListController.GetComponentsInChildren<EnemyController>()) {
+                if (enemy.state == EnemyController.EnemyState.UNAWARE) {
+                    enemy.state = EnemyController.EnemyState.PURSUIT;
                 }
             }
         }
@@ -30,8 +30,8 @@ public class RoomController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other) {
         if (other.gameObject == cameraController.gameObject) {
-            foreach (NavMeshAgentController enemy in enemyListController.GetComponentsInChildren<NavMeshAgentController>()) {
-                enemy.state = NavMeshAgentController.EnemyState.UNAWARE;
+            foreach (EnemyController enemy in enemyListController.GetComponentsInChildren<EnemyController>()) {
+                enemy.state = EnemyController.EnemyState.UNAWARE;
             }
         }
     }
