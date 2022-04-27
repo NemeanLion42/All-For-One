@@ -69,7 +69,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4564525928603474245, guid: 84d76be63d87ef24db6f8a85ea0c53d3, type: 3}
       propertyPath: m_Name
-      value: fullHealthPickup
+      value: fullHealthPickup Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7747743440671304706, guid: 84d76be63d87ef24db6f8a85ea0c53d3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7747743440671304706, guid: 84d76be63d87ef24db6f8a85ea0c53d3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84d76be63d87ef24db6f8a85ea0c53d3, type: 3}
