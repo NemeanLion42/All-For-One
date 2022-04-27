@@ -364,10 +364,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: moneyPickup
       objectReference: {fileID: 0}
-    - target: {fileID: 7747743440671304706, guid: 84d76be63d87ef24db6f8a85ea0c53d3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.3
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4564525928603474240, guid: 84d76be63d87ef24db6f8a85ea0c53d3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 84d76be63d87ef24db6f8a85ea0c53d3, type: 3}
@@ -1206,10 +1202,6 @@ PrefabInstance:
     - target: {fileID: 115082755564867502, guid: a5a5b6dded0508849b341a5601ca452c, type: 3}
       propertyPath: m_Name
       value: halfHealthPickup
-      objectReference: {fileID: 0}
-    - target: {fileID: 6144366271310641897, guid: a5a5b6dded0508849b341a5601ca452c, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5a5b6dded0508849b341a5601ca452c, type: 3}
