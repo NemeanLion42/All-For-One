@@ -13,7 +13,7 @@ public class GearsUI : MonoBehaviour
             gearCount = value;
 
             if (gearsText != null) {
-                gearsText.text = gearCount.ToString() + " gears";
+                gearsText.text = "bits: "+gearCount.ToString();
             }
 
         }

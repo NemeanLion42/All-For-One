@@ -7,5 +7,9 @@ Credits
 === Twitch Command Handling ===
     https://www.raywenderlich.com/24373608-how-to-create-a-twitch-chat-game-with-unity
 
-=== Gravity Font ===
+=== Gravity Font (NO LONGER USED) ===
     Font from Gravity Ace. Posted by John Watson at: https://jotson.itch.io/gravity-pixel-font 
+
+
+=== MagoFont ===
+    Posted by Nimble Beast Collective: https://nimblebeastscollective.itch.io/magosfonts
