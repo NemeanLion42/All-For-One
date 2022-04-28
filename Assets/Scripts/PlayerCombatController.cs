@@ -14,8 +14,7 @@ public class PlayerCombatController : MonoBehaviour
     float invincibilityTime = 0.5f;
     float lastDamageTime = 0;
     public PlayerStats playerStats;
-
-
+    public PlayerLifeTracker playerTrailTracker;
     private AudioSource source;
     public AudioClip laserSound;
     public AudioClip hurtSound;
@@ -34,7 +33,7 @@ public class PlayerCombatController : MonoBehaviour
 
             if (playerStats.PlayerHealth <= 0) {
                 source.PlayOneShot(deathSound, 1.0f);
-                gameObject.SetActive(false);
+                playerTrailTracker.alive = false;
             } else {
                 source.PlayOneShot(hurtSound, 1.0f);
             }
@@ -44,7 +43,7 @@ public class PlayerCombatController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetMouseButton(0) && lastShotTime + timeBetweenShots < Time.time) {
+        if (Input.GetMouseButton(0) && lastShotTime + timeBetweenShots < Time.time && GetComponent<PlayerLifeTracker>().alive) {
             // Find where bolt should go
             Vector3 target = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3 boltVelocity = (target - transform.position).normalized * boltSpeed;

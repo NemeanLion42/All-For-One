@@ -521,6 +521,7 @@ MonoBehaviour:
   currentRoom: {fileID: 0}
   settings: {fileID: 1488107360}
   mapController: {fileID: 1726486569}
+  playerLifeTracker: {fileID: 1473875746}
 --- !u!61 &901920179
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -583,6 +584,7 @@ GameObject:
   - component: {fileID: 1473875741}
   - component: {fileID: 1473875744}
   - component: {fileID: 1473875745}
+  - component: {fileID: 1473875746}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -643,6 +645,7 @@ MonoBehaviour:
   blasterBoltPrefab: {fileID: 4359205459873097890, guid: 9788ee6cb674d404cbe7545a3b8eafaf, type: 3}
   stunTime: 0.065
   playerStats: {fileID: 11400000, guid: f36bea0b1b933bc4481662a03c5dd158, type: 2}
+  playerTrailTracker: {fileID: 1473875746}
   laserSound: {fileID: 8300000, guid: b546fcf83869440b492b5454f71b1936, type: 3}
   hurtSound: {fileID: 8300000, guid: 872cbe6645e8f4f83bd63eeec553faf3, type: 3}
   deathSound: {fileID: 8300000, guid: 352738a717dff4ff0922c299d992d857, type: 3}
@@ -789,6 +792,22 @@ MonoBehaviour:
   startingMaxHealth: 3
   startingCoins: 0
   playerStats: {fileID: 11400000, guid: f36bea0b1b933bc4481662a03c5dd158, type: 2}
+--- !u!114 &1473875746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473875738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cc05a79085fc3347b5e508979552b7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomPositions: []
+  rooms: []
+  cameraController: {fileID: 901920178}
+  alive: 0
 --- !u!1 &1488107359
 GameObject:
   m_ObjectHideFlags: 0
