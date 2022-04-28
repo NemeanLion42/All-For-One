@@ -17,8 +17,10 @@ public class PlayerCombatController : MonoBehaviour
     public PlayerStats playerStats;
 
 
-    public AudioSource source;
+    private AudioSource source;
     public AudioClip laserSound;
+    public AudioClip hurtSound;
+    public AudioClip deathSound;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +34,10 @@ public class PlayerCombatController : MonoBehaviour
             lastDamageTime = Time.time;
 
             if (playerStats.PlayerHealth <= 0) {
+                source.PlayOneShot(deathSound, 1.0f);
                 gameObject.SetActive(false);
+            } else {
+                source.PlayOneShot(hurtSound, 1.0f);
             }
         }
     }
