@@ -12,6 +12,7 @@ public class ResetPlayerState : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        playerStats.playerObject = gameObject;
         playerStats.PlayerMaxHealth = startingMaxHealth;
         playerStats.PlayerHealth = startingHealth;
         playerStats.PlayerCoins = startingCoins;

@@ -32,11 +32,13 @@ public class BlasterBoltController : MonoBehaviour
             }
 
             enemiesHit++;
-            if (enemiesHit > playerCombatController.pierce) {
+            if (enemiesHit > playerCombatController.pierce && gameObject != null) {
                 Destroy(gameObject);
             }
-        } else if (/*(!other.isTrigger && !(other.gameObject == playerCombatController.gameObject))*/other.name == "Walls" || other.name == "Doors") {
-            Destroy(gameObject);
+        } else if (other.name == "Walls" || other.name == "Doors") {
+            if (gameObject != null) {
+                Destroy(gameObject);
+            }
         }
     }
 }

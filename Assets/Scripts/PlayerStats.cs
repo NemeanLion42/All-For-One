@@ -15,6 +15,8 @@ public class PlayerStats : ScriptableObject
     public delegate void UpdateCoins(int newCoins);
     public static event UpdateCoins OnCoinUpdate;
 
+    public GameObject playerObject;
+
     public enum InventoryItems {
         key
     }
