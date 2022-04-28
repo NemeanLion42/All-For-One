@@ -7,7 +7,7 @@ public class PuzzleManager : MonoBehaviour
     public bool randomCombo = false;
     LeverInteractable[] leverList;
 
-    public int[] leverCombo = new int[] {0,1,2,3};
+    public int[] leverCombo = new int[] {1,2,3,4}; // hour numbers
 
     public GameObject keyPrefab;
 
@@ -48,7 +48,7 @@ public class PuzzleManager : MonoBehaviour
 
     public void TurnOnLever(int leverNumber) {
 
-        leversPressedInOrder[numOfLeversPressed] = leverNumber;
+        leversPressedInOrder[numOfLeversPressed] = leverNumber+1;
         numOfLeversPressed++;
 
         Debug.Log("We've pressed "+numOfLeversPressed.ToString());
