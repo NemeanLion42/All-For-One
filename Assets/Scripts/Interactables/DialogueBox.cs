@@ -47,6 +47,10 @@ public class DialogueBox : MonoBehaviour, IObjectTriggered
         }
     }
 
+    public void ResetDialogueLoop() {
+        text_idx = 0;
+    }
+
     public void WriteText(string text) {
         // make it easier to change the text
         if (dialogueText != null) {

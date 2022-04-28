@@ -35,7 +35,7 @@ public class Interactable : MonoBehaviour
     }
     InteractionState currentState = InteractionState.OutOfRange;
 
-    IObjectTriggered scriptToTrigger;
+    IObjectTriggered[] scriptsToTrigger;
 
 
     // Start is called before the first frame update
@@ -54,7 +54,7 @@ public class Interactable : MonoBehaviour
             TMP_KeyToPress.text = keyToPress.ToString();
         }
 
-        scriptToTrigger = GetComponent<IObjectTriggered>();
+        scriptsToTrigger = GetComponents<IObjectTriggered>();
     }
 
     // Update is called once per frame
@@ -123,19 +123,23 @@ public class Interactable : MonoBehaviour
     void Execute() {
 
         // did we already trigger the event?
-        if (!scriptToTrigger.triggered) {
-
-            // no! so trigger it
-            scriptToTrigger.TriggerObject();
+        foreach (IObjectTriggered sTrigger in scriptsToTrigger) {
+            if (!sTrigger.triggered) {
+                // no! so trigger it
+                sTrigger.TriggerObject();
+            }
         }
+        
     }
 
     void LeftRange() {
 
-        // did we end up triggering the event before?
-        if (scriptToTrigger.triggered) {
-            // yes! make sure the event knows the player left
-            scriptToTrigger.LeftRange();
+        foreach (IObjectTriggered sTrigger in scriptsToTrigger) {
+            // did we end up triggering the event before?
+            if (sTrigger.triggered) {
+                // yes! make sure the event knows the player left
+                sTrigger.LeftRange();
+            }
         }
     }
 }
