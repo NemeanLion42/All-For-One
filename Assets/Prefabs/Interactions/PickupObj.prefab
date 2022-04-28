@@ -485,7 +485,9 @@ MonoBehaviour:
   interactionKey: {fileID: 4564525927833771292}
   keyToPress: 69
   interactionType: 0
+  requiredToInteract: 
   TMP_KeyToPress: {fileID: 4564525928573875958}
+  playerStats: {fileID: 0}
 --- !u!50 &4564525928603474247
 Rigidbody2D:
   serializedVersion: 4
@@ -519,5 +521,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b755844666d57164189bd53c6fb66175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupType: 0
+  pickupType: 2
   playerStats: {fileID: 11400000, guid: f36bea0b1b933bc4481662a03c5dd158, type: 2}
