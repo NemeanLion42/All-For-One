@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class PlayerCombatController : MonoBehaviour
 {
-    public Transform blasterBoltPrefab;
-    public float lastShotTime = 0;
     public float timeBetweenShots;
     public float range;
     public float boltSpeed;
-    public float damage;
     public int pierce;
+    public Transform blasterBoltPrefab;
+    float lastShotTime = 0;
     public float stunTime;
-    public float invincibilityTime;
-    public float lastDamageTime = 0;
+    float invincibilityTime = 0.5f;
+    float lastDamageTime = 0;
     public PlayerStats playerStats;
 
 
