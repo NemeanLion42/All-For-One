@@ -15,10 +15,15 @@ public class PlayerCombatController : MonoBehaviour
     public float invincibilityTime;
     public float lastDamageTime = 0;
     public PlayerStats playerStats;
+
+
+    public AudioSource source;
+    public AudioClip laserSound;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        source = GetComponent<AudioSource>();        
     }
 
     public void TakeDamage(float damageTaken) {
@@ -44,6 +49,7 @@ public class PlayerCombatController : MonoBehaviour
             newBolt.GetComponent<Rigidbody2D>().velocity = boltVelocity;
             newBolt.GetComponent<BlasterBoltController>().playerCombatController = this;
             newBolt.GetComponent<BlasterBoltController>().firePosition = transform.position;
+            source.PlayOneShot(laserSound, 0.1f);
             // Reset for next shot
             lastShotTime = Time.time;
         }
