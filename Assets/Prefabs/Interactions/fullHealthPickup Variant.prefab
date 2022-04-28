@@ -67,6 +67,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4564525928603474244, guid: 84d76be63d87ef24db6f8a85ea0c53d3, type: 3}
+      propertyPath: pickupType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4564525928603474245, guid: 84d76be63d87ef24db6f8a85ea0c53d3, type: 3}
       propertyPath: m_Name
       value: fullHealthPickup Variant

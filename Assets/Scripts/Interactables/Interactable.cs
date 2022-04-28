@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using TMPro;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -22,8 +23,11 @@ public class Interactable : MonoBehaviour
 
     bool showingInteractionKey = true;
 
+    public PlayerStats.InventoryItems[] requiredToInteract;
+
     PlayerMovementController playerScript = null;
     public TMP_Text TMP_KeyToPress;
+    PlayerStats playerStats;
 
     public enum InteractionState {
         InRange,
@@ -37,6 +41,7 @@ public class Interactable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerStats = (PlayerStats) AssetDatabase.LoadAssetAtPath("Assets/Scripts/StreamerStats.asset", typeof(PlayerStats));
 
         inputKeyCode = (KeyCode) System.Enum.Parse(typeof(KeyCode), keyToPress.ToString());
 
@@ -81,14 +86,26 @@ public class Interactable : MonoBehaviour
 
         // did the Player enter the space?
         if (playerScript != null) {
+            bool missingItem = false;
 
-            // if we want to cause the interaction when they enter the space, execute
-            if (interactionType == InteractionType.WhenNear) {
-                Execute();
+            foreach (PlayerStats.InventoryItems item in requiredToInteract) {
+                Debug.Log("item is equal to key: "+(item==PlayerStats.InventoryItems.key).ToString());
+
+                if (!playerStats.currentInventory.Contains(item)) {
+                    missingItem = true;
+                    Debug.Log("Missing item: "+item.ToString());
+                }
             }
 
-            // in any case, the player is in range
-            currentState = InteractionState.InRange;
+            if (!missingItem) {
+                // if we want to cause the interaction when they enter the space, execute
+                if (interactionType == InteractionType.WhenNear) {
+                    Execute();
+                }
+
+                // in any case, the player is in range
+                currentState = InteractionState.InRange;
+            }
         }
     }
 

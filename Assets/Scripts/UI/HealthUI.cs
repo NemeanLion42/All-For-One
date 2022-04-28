@@ -54,8 +54,10 @@ public class HealthUI : MonoBehaviour
         PlayerStats.OnCurrentHealthUpdate += OnPlayerHealthUpdate;
         PlayerStats.OnMaxHealthUpdate += OnPlayerMaxHealthUpdate;
 
-        playerStats.PlayerMaxHealth = playerStats.startingPlayerMaxHealth;
-        playerStats.PlayerHealth = playerStats.startingPlayerHealth;
+        OnPlayerMaxHealthUpdate(playerStats.PlayerMaxHealth);
+        OnPlayerHealthUpdate(playerStats.PlayerHealth);
+        // playerStats.PlayerMaxHealth = playerStats.startingPlayerMaxHealth;
+        // playerStats.PlayerHealth = playerStats.startingPlayerHealth;
     }
 
     void OnDisable() {

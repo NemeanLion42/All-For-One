@@ -31,7 +31,7 @@ public class GearsUI : MonoBehaviour
         gearsText = GetComponent<TMP_Text>();
         PlayerStats.OnCoinUpdate += OnCoinUpdate;
 
-        playerStats.PlayerCoins = playerStats.startingCoins;
+        // playerStats.PlayerCoins = playerStats.startingCoins;
 
     }
 
