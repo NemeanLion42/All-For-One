@@ -3,7 +3,9 @@ guid: df8ce0046c284e44d918b03ad37e8502
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - playerCombatController: {instanceID: 0}
+  - destruct: {fileID: 8300000, guid: 26bc473e95f6949beb2342b3fb647e11, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
