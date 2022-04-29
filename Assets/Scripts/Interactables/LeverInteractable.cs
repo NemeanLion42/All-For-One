@@ -14,14 +14,9 @@ public class LeverInteractable : MonoBehaviour, IObjectTriggered
         set {
             _triggered = value;
 
-            // theoretically flip the levers
-            if (!_triggered) {
-                // the normal state
-                spriteRenderer.color = new Color(1, 100f/255f, 1);
-            } else {
-                // triggered state
-                spriteRenderer.color = new Color(130f/255f, 65f/255f, 130f/255f);
-            }
+            // theoretically flip the buttons          
+            unLitRenderer.gameObject.SetActive(!_triggered);
+            litRenderer.gameObject.SetActive(_triggered);
         } 
         get {
             return _triggered;
@@ -29,15 +24,22 @@ public class LeverInteractable : MonoBehaviour, IObjectTriggered
     }
 
     PuzzleManager puzzleManager;
-    SpriteRenderer spriteRenderer;
+    public GameObject unlitSprite;
+    SpriteRenderer unLitRenderer;
+
+    public GameObject litSprite;
+    SpriteRenderer litRenderer;
     DialogueBox dialogueBox;
 
     // Start is called before the first frame update
     void Start()
     {
         puzzleManager = GetComponentInParent<PuzzleManager>();
-        spriteRenderer = GetComponentsInChildren<SpriteRenderer>()[1]; // assuming the thing itself is after the interaction key sprite
+        unLitRenderer = unlitSprite.GetComponent<SpriteRenderer>(); // assuming the thing itself is after the interaction key sprite
+        litRenderer = litSprite.GetComponent<SpriteRenderer>();
         dialogueBox = GetComponent<DialogueBox>();
+
+        triggered = false;
     }
 
     // Update is called once per frame

@@ -232,6 +232,86 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: -1, y: 10, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 0, y: 10, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -1, y: 11, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 0, y: 11, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -1, y: 12, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 0, y: 12, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -1, y: 13, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 0, y: 13, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -1, y: 14, z: 0}
     second:
       serializedVersion: 2
@@ -254,13 +334,13 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 8
+  - m_RefCount: 16
     m_Data: {fileID: 11400000, guid: 4e86ba306e7fe2b429dc631ff0790db3, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 8
+  - m_RefCount: 16
     m_Data: {fileID: -1413553885467816024, guid: f1e1098255f1b6044aa52ed4e53fee72, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 8
+  - m_RefCount: 16
     m_Data:
       e00: 1
       e01: 0
@@ -279,7 +359,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 8
+  - m_RefCount: 16
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -9682,8 +9762,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d748b3480c3ba4092624a32c369cc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomCombo: 0
+  randomCombo: 1
   leverCombo: 01000000020000000300000004000000
+  hintInteractable: {fileID: 3477550985144994924}
   keyPrefab: {fileID: 2719125585775949066, guid: ece4c1d20b346ab41ab91f4fba7b9870, type: 3}
 --- !u!1 &5386409404923898623
 GameObject:
@@ -12302,11 +12383,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200351, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: textToWrite.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200351, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: textToWrite.Array.data[0]
-      value: 'It looks like one of the Departed left their schedule: 1, 2, 3, 4'
+      value: 'It looks like one of the Departed left their schedule:'
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200351, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: textToWrite.Array.data[1]
@@ -12321,6 +12402,11 @@ PrefabInstance:
 --- !u!4 &3477550985144994926 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7180562626387200323, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
+  m_PrefabInstance: {fileID: 6045173857212548397}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3477550985144994924 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7180562626387200321, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
   m_PrefabInstance: {fileID: 6045173857212548397}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6368139797192422856
@@ -12454,6 +12540,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7337919068706790057}
     m_Modifications:
+    - target: {fileID: 2913721040333422350, guid: 8d9e7feb79305e048a8b6f34f5b51c87, type: 3}
+      propertyPath: m_Name
+      value: unLitSprite
+      objectReference: {fileID: 0}
     - target: {fileID: 3722075408665663529, guid: 8d9e7feb79305e048a8b6f34f5b51c87, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -12501,6 +12591,14 @@ PrefabInstance:
     - target: {fileID: 3722075408665663531, guid: 8d9e7feb79305e048a8b6f34f5b51c87, type: 3}
       propertyPath: m_Name
       value: hour1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095093459073496063, guid: 8d9e7feb79305e048a8b6f34f5b51c87, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856303784712650699, guid: 8d9e7feb79305e048a8b6f34f5b51c87, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d9e7feb79305e048a8b6f34f5b51c87, type: 3}
@@ -12563,6 +12661,14 @@ PrefabInstance:
     - target: {fileID: 3722075408665663531, guid: 8d9e7feb79305e048a8b6f34f5b51c87, type: 3}
       propertyPath: m_Name
       value: hour11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095093459073496063, guid: 8d9e7feb79305e048a8b6f34f5b51c87, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856303784712650699, guid: 8d9e7feb79305e048a8b6f34f5b51c87, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d9e7feb79305e048a8b6f34f5b51c87, type: 3}
