@@ -7,10 +7,11 @@ public class EnemyListController : MonoBehaviour
     RoomController roomController;
     GameObject player;
     public Transform enemyPrefab;
-    public Vector3[] spawnLocations = new Vector3[] {
-        new Vector3(0, 5, 0),
-        new Vector3(-10, 0, 0),
-        new Vector3(5, 0, 0)};
+    public int enemiesToSpawn;
+    // Vector3[] spawnLocations = new Vector3[] {
+    //     new Vector3(0, 0, 0),
+    //     new Vector3(0, 0, 0),
+    //     new Vector3(0, 0, 0)};
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +22,9 @@ public class EnemyListController : MonoBehaviour
 
         roomController = GetComponentInParent<RoomController>();
         player = roomController.player;
-        foreach (Vector3 loc in spawnLocations) {
-            Transform newEnemy = Instantiate(enemyPrefab, loc + transform.position, Quaternion.identity);
+        // foreach (Vector3 loc in spawnLocations) {
+        for (int i = 0; i < enemiesToSpawn; i++) {
+            Transform newEnemy = Instantiate(enemyPrefab, transform.position + new Vector3(Random.Range(-3, 3), Random.Range(-3, 3), 0), Quaternion.identity);
             newEnemy.SetParent(transform);
             newEnemy.GetComponent<EnemyController>().target = player.transform;
         }

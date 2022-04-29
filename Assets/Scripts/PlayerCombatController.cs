@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class PlayerCombatController : MonoBehaviour
 {
-    public Transform blasterBoltPrefab;
-    public float lastShotTime = 0;
     public float timeBetweenShots;
     public float range;
     public float boltSpeed;
-    public float damage;
     public int pierce;
+    public Transform blasterBoltPrefab;
+    float lastShotTime = 0;
     public float stunTime;
-    public float invincibilityTime;
-    public float lastDamageTime = 0;
+    float invincibilityTime = 0.5f;
+    float lastDamageTime = 0;
     public PlayerStats playerStats;
-
-
-    public AudioSource source;
+    public PlayerLifeTracker playerTrailTracker;
+    private AudioSource source;
     public AudioClip laserSound;
+    public AudioClip hurtSound;
+    public AudioClip deathSound;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +32,10 @@ public class PlayerCombatController : MonoBehaviour
             lastDamageTime = Time.time;
 
             if (playerStats.PlayerHealth <= 0) {
-                gameObject.SetActive(false);
+                source.PlayOneShot(deathSound, 1.0f);
+                playerTrailTracker.alive = false;
+            } else {
+                source.PlayOneShot(hurtSound, 1.0f);
             }
         }
     }
@@ -40,7 +43,7 @@ public class PlayerCombatController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetMouseButton(0) && lastShotTime + timeBetweenShots < Time.time) {
+        if (Input.GetMouseButton(0) && lastShotTime + timeBetweenShots < Time.time && GetComponent<PlayerLifeTracker>().alive) {
             // Find where bolt should go
             Vector3 target = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3 boltVelocity = (target - transform.position).normalized * boltSpeed;

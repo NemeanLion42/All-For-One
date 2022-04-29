@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     public float timeToUnstun;
     public EnemyState state;
     public int health;
+    public EnemyListController enemyListController;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,31 +27,37 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        switch (state) {
-            case EnemyState.UNAWARE:
-                agent.isStopped = false;
-                agent.SetDestination(spawnPoint);
-                break;
-            case EnemyState.PURSUIT:
-                agent.isStopped = false;
-                agent.SetDestination(target.position);
-                break;
-            case EnemyState.ATTACKING:
-                agent.isStopped = true;
-                agent.ResetPath();
-                break;
-            case EnemyState.STUNNED:
-                agent.isStopped = true;
-                agent.ResetPath();
-                if (Time.time > timeToUnstun) {
-                    if (Camera.main.GetComponent<CameraController>().currentRoom == transform.parent.parent.gameObject) {
-                        state = EnemyState.PURSUIT;
-                    } else {
-                        state = EnemyState.UNAWARE;
+        if (target.GetComponent<PlayerLifeTracker>().alive) {
+            switch (state) {
+                case EnemyState.UNAWARE:
+                    agent.isStopped = false;
+                    agent.SetDestination(spawnPoint);
+                    break;
+                case EnemyState.PURSUIT:
+                    agent.isStopped = false;
+                    agent.SetDestination(target.position);
+                    break;
+                case EnemyState.ATTACKING:
+                    agent.isStopped = true;
+                    agent.ResetPath();
+                    break;
+                case EnemyState.STUNNED:
+                    agent.isStopped = true;
+                    agent.ResetPath();
+                    if (Time.time > timeToUnstun) {
+                        if (Camera.main.GetComponent<CameraController>().currentRoom == transform.parent.parent.gameObject) {
+                            state = EnemyState.PURSUIT;
+                        } else {
+                            state = EnemyState.UNAWARE;
+                        }
                     }
-                }
-                break;
+                    break;
+            }
+        } else {
+            agent.isStopped = true;
+            agent.ResetPath();
         }
+        
     }
 
     private void OnCollisionStay2D(Collision2D other) {

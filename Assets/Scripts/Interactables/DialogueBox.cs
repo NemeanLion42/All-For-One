@@ -66,7 +66,7 @@ public class DialogueBox : MonoBehaviour, IObjectTriggered
         dialogueInstance.transform.SetParent(uiCanvas.transform);
         // we need to make sure the dialogueBoxRectangle is just standard in the local space
         RectTransform dialogueBoxRect = dialogueInstance.GetComponent<RectTransform>();
-        dialogueBoxRect.localPosition = Vector3.zero;
+        dialogueBoxRect.localPosition = new Vector3(0, 15, 0);
         dialogueBoxRect.localScale = new Vector3(1, 1, 1);
         
         // update out text and background objects

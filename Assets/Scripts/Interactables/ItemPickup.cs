@@ -9,7 +9,11 @@ public class ItemPickup : MonoBehaviour, IObjectTriggered
         health,
         halfHealth,
         money,
-        key
+        key,
+        timeBetweenShots,
+        range,
+        boltSpeed,
+        pierce
     }
     public PickupType pickupType = PickupType.health;
     public PlayerStats playerStats;
@@ -49,6 +53,22 @@ public class ItemPickup : MonoBehaviour, IObjectTriggered
                 foreach (PlayerStats.InventoryItems i in playerStats.currentInventory) {
                     Debug.Log("Item in inventory: "+i.ToString());
                 }
+                break;
+            }
+            case PickupType.timeBetweenShots: {
+                playerStats.playerObject.GetComponent<PlayerCombatController>().timeBetweenShots *= 0.9f;
+                break;
+            }
+            case PickupType.range: {
+                playerStats.playerObject.GetComponent<PlayerCombatController>().range *= 1.15f;
+                break;
+            }
+            case PickupType.boltSpeed: {
+                playerStats.playerObject.GetComponent<PlayerCombatController>().boltSpeed *= 1.2f;
+                break;
+            }
+            case PickupType.pierce: {
+                playerStats.playerObject.GetComponent<PlayerCombatController>().pierce += 1;
                 break;
             }
             default: {
