@@ -137,8 +137,14 @@ public class TwitchClient : MonoBehaviour
                 Debug.Log("Removed message from queue: "+message);
                 client.SendMessage(client.JoinedChannels[0], message);
                 return;
+            } else {
+                Debug.Log("Joined channels is zero :((");
             }
-        }
+        } 
+
+        if (client == null) {
+            Debug.Log("Client is null");
+        } else if (!client.IsConnected) Connect();
     }
 
     public void SendMessageToChat(string message) {

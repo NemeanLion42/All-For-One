@@ -188,26 +188,19 @@ public class ChatManager : MonoBehaviour
         // This will count the votes and return the winner
         string winning_room = "";
 
-        if (voteRoundNum == 0) {
-            Debug.Log("Returning first option as start room");
-            voteRoundNum++;
-            return votingOptions[0];
-        }
-
         voteRoundNum++;
 
         switch (currentGenState) {
             case GenerationState.TwitchGen: {
-                Debug.Log("Need to implement RNG if there are split votes");
                 winning_room = voteScript.CountVotes();
 
                 // Jack's addition, feel free to change
-                if (winning_room == null) winning_room = votingOptions[UnityEngine.Random.Range(0, votingOptions.Length)];
+                if (winning_room == null) winning_room = "0:"+votingOptions[UnityEngine.Random.Range(0, votingOptions.Length)];
 
             } break;
             case GenerationState.RNG: {
                 int rand_idx = UnityEngine.Random.Range(0, votingOptions.Length);
-                winning_room = votingOptions[rand_idx];
+                winning_room = "0:"+votingOptions[rand_idx];
             } break;
         }
         

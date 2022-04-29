@@ -21,6 +21,8 @@ public class PuzzleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Random.seed = System.DateTime.Now.Millisecond;
+
         leverList = GetComponentsInChildren<LeverInteractable>();
 
         for (int idx = 0; idx < leverList.Length; idx++) {

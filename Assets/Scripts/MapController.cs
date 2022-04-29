@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class MapController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class MapController : MonoBehaviour
     public Transform[] roomPrefabs;
     public static int roomSize = 30;
 
+    PlayerStats playerStats;
     private bool startRoom = true;
 
     private void CallStartVoting() {
@@ -29,6 +31,7 @@ public class MapController : MonoBehaviour
     }
 
     private void Start() {
+        playerStats = AssetDatabase.LoadAssetAtPath<PlayerStats>("Assets/Scripts/StreamerStats.asset");
         CallStartVoting();
     }
 
@@ -39,10 +42,17 @@ public class MapController : MonoBehaviour
         Vector3 roomPosition = new Vector3(roomX, roomY, 0);
         // If there's a room there, return it
         Transform[] rooms = gameObject.GetComponentsInChildren<Transform>();
+
         foreach (Transform room in rooms) {
-            if (room.position == roomPosition && room.gameObject != gameObject) return room.gameObject;
+            if (room.position == roomPosition && room.gameObject != gameObject) {
+                int votes = room.GetComponentInChildren<VoteTracker>().numVotes;
+
+                playerStats.SetCurrentRoom(room.gameObject.name.Split('(')[0], votes);
+                return room.gameObject;
+            }
         }
         // If there's not, make a new room and return it
+
         GameObject newRoom = CreateRoom(roomPosition);
         newRoom.transform.SetParent(transform);
         return newRoom;
@@ -54,14 +64,26 @@ public class MapController : MonoBehaviour
             GameObject newRoom = Instantiate(startRoomPrefab, roomPosition, Quaternion.identity).gameObject;
             CallStartVoting();
 
+            playerStats.SetCurrentRoom("Security", 0);
+
             startRoom = false;
             return newRoom;
         } else {
-            string roomToGenerate = chatManager.CountVotes();
+            string countedVotes = chatManager.CountVotes(); // {votes}:room_name
+            string[] votesAndRoom = countedVotes.Split(':');
+            int numVotes = 0;
+            int.TryParse(votesAndRoom[0], out numVotes);
+            string roomToGenerate = votesAndRoom[1];
+
             Transform newRoomPrefab = null;
             foreach (Transform room in roomPrefabs) {
                 if (room.gameObject.name.ToLower() == roomToGenerate) {
                     newRoomPrefab = room;
+
+                    VoteTracker voteTracker = newRoomPrefab.GetComponentInChildren<VoteTracker>();
+                    voteTracker.numVotes = numVotes;
+
+                    playerStats.SetCurrentRoom(roomToGenerate, numVotes);
                     break;
                 }
             }

@@ -339,6 +339,7 @@ MonoBehaviour:
   - {fileID: 8484017471769274304, guid: 060942ae103874940b0e0ada26128818, type: 3}
   - {fileID: 8484017471769274304, guid: 1d479cffc5b2dc54e816543a44425acb, type: 3}
   - {fileID: 8484017471769274304, guid: 6a27d8b54f532db47b4b26dfda6e6bdd, type: 3}
+  - {fileID: 8484017471769274304, guid: 40e0636549e5ddb4f9113fc0f9838bc9, type: 3}
 --- !u!4 &987024313
 Transform:
   m_ObjectHideFlags: 0
@@ -721,6 +722,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3764574212334992196, guid: eca5a358096a4ae4992bcea0bf840a90, type: 3}
+      propertyPath: m_text
+      value: '}}}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764574212334992196, guid: eca5a358096a4ae4992bcea0bf840a90, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764574212334992196, guid: eca5a358096a4ae4992bcea0bf840a90, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3889807897654713239, guid: eca5a358096a4ae4992bcea0bf840a90, type: 3}
       propertyPath: m_Name
       value: Canvas
