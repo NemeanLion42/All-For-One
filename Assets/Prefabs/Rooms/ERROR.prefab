@@ -9712,7 +9712,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 331867988305202037, guid: 5f52a3b4d6bc6794eb8549487dc79d95, type: 3}
-  enemiesToSpawn: 3
+  enemiesToSpawn: 0
 --- !u!1 &8700455453404762988
 GameObject:
   m_ObjectHideFlags: 0
