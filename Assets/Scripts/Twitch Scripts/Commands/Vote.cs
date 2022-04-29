@@ -58,7 +58,7 @@ public class Vote : MonoBehaviour, IGameCommand
             int num_votes = votes[k];
 
             if (num_votes > max_votes) {
-                max_key = k;
+                max_key = num_votes.ToString() + ":" + k;
                 max_votes = num_votes;
             }
         }

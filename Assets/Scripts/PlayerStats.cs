@@ -15,6 +15,9 @@ public class PlayerStats : ScriptableObject
     public delegate void UpdateCoins(int newCoins);
     public static event UpdateCoins OnCoinUpdate;
 
+    public delegate void UpdateCurrentRoom(string roomName, int votesForRoom);
+    public static event UpdateCurrentRoom OnCurrentRoomUpdate;
+
     public GameObject playerObject;
 
     public enum InventoryItems {
@@ -29,6 +32,8 @@ public class PlayerStats : ScriptableObject
     float playerHealth;
     float playerMaxHealth;
     int playerCoins;
+    string currentRoom;
+    int votesForRoom;
 
     public string ChannelName {
         get {
@@ -70,5 +75,21 @@ public class PlayerStats : ScriptableObject
         get {
             return playerCoins;
         }
+    }
+
+    public string CurrentRoom {
+        set {
+            currentRoom = value;
+            votesForRoom = 0;
+
+            if (OnCurrentRoomUpdate != null) OnCurrentRoomUpdate("test", 4);
+        }
+    }
+
+    public void SetCurrentRoom(string newRoom, int numVotes) {
+        currentRoom = newRoom;
+        votesForRoom = numVotes;
+
+        if (OnCurrentRoomUpdate != null) OnCurrentRoomUpdate(currentRoom, votesForRoom);
     }
 }

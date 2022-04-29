@@ -28,9 +28,8 @@ public class StartScreen : MonoBehaviour
         if (channelNameTMPText != null && playerStats != null) {
 
             // create char array to detect valid chars in channel name
-            char[] channelCharList = new char[100];
+            char[] channelCharList = new char[50];
             TMP_CharacterInfo[] cinfoList = channelNameTMPText.textInfo.characterInfo;
-
 
             int added_chars = 0;
             foreach (TMP_CharacterInfo cinfo in channelNameTMPText.textInfo.characterInfo) {

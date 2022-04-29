@@ -197,6 +197,7 @@ GameObject:
   - component: {fileID: 940587986}
   - component: {fileID: 940587985}
   - component: {fileID: 940587989}
+  - component: {fileID: 940587990}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -285,6 +286,22 @@ MonoBehaviour:
   startingMaxHealth: 3
   startingCoins: 0
   playerStats: {fileID: 11400000, guid: f36bea0b1b933bc4481662a03c5dd158, type: 2}
+--- !u!114 &940587990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940587984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cc05a79085fc3347b5e508979552b7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomPositions: []
+  rooms: []
+  cameraController: {fileID: 1703127261}
+  alive: 1
 --- !u!1 &987024311
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,6 +337,9 @@ MonoBehaviour:
   startRoomPrefab: {fileID: 8484017471769274304, guid: 0b2eb09110137b74dbcb3b7817a33d5e, type: 3}
   roomPrefabs:
   - {fileID: 8484017471769274304, guid: 060942ae103874940b0e0ada26128818, type: 3}
+  - {fileID: 8484017471769274304, guid: 1d479cffc5b2dc54e816543a44425acb, type: 3}
+  - {fileID: 8484017471769274304, guid: 6a27d8b54f532db47b4b26dfda6e6bdd, type: 3}
+  - {fileID: 8484017471769274304, guid: 40e0636549e5ddb4f9113fc0f9838bc9, type: 3}
 --- !u!4 &987024313
 Transform:
   m_ObjectHideFlags: 0
@@ -481,6 +501,7 @@ MonoBehaviour:
   currentRoom: {fileID: 0}
   settings: {fileID: 1451263413}
   mapController: {fileID: 987024312}
+  playerLifeTracker: {fileID: 940587990}
 --- !u!81 &1703127262
 AudioListener:
   m_ObjectHideFlags: 0
@@ -701,6 +722,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3764574212334992196, guid: eca5a358096a4ae4992bcea0bf840a90, type: 3}
+      propertyPath: m_text
+      value: '}}}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764574212334992196, guid: eca5a358096a4ae4992bcea0bf840a90, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764574212334992196, guid: eca5a358096a4ae4992bcea0bf840a90, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3889807897654713239, guid: eca5a358096a4ae4992bcea0bf840a90, type: 3}
       propertyPath: m_Name
       value: Canvas
