@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1481381410}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: -0.02, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2719125585775949068}
   m_RootOrder: 2
@@ -71,8 +71,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.008710861, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 1124aaa81e576f945ab690a565a38fb3, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -163,12 +163,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4564525928603474245, guid: 84d76be63d87ef24db6f8a85ea0c53d3, type: 3}
       propertyPath: m_Name
-      value: keyPickup
+      value: keyPickup Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4564525928603474246, guid: 84d76be63d87ef24db6f8a85ea0c53d3, type: 3}
       propertyPath: playerStats
       value: 
       objectReference: {fileID: 11400000, guid: f36bea0b1b933bc4481662a03c5dd158, type: 2}
+    - target: {fileID: 7747743440671304706, guid: 84d76be63d87ef24db6f8a85ea0c53d3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7747743440671304706, guid: 84d76be63d87ef24db6f8a85ea0c53d3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.6
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4564525928603474240, guid: 84d76be63d87ef24db6f8a85ea0c53d3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 84d76be63d87ef24db6f8a85ea0c53d3, type: 3}
