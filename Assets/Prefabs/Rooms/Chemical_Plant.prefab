@@ -12553,7 +12553,7 @@ GameObject:
   - component: {fileID: 8098323695652576651}
   - component: {fileID: 671016090162716859}
   m_Layer: 0
-  m_Name: ChemicalPlant
+  m_Name: Chemical_Plant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
