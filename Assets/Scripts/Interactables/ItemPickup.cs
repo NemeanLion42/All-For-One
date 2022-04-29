@@ -18,12 +18,14 @@ public class ItemPickup : MonoBehaviour, IObjectTriggered
     public PickupType pickupType = PickupType.health;
     public PlayerStats playerStats;
 
+    public bool destroyOnTrigger = true;
+    bool _triggered = false;
     public bool triggered {
         set {
-
+            _triggered = value;
         }
         get {
-            return false;
+            return _triggered;
         }
     }
 
@@ -75,9 +77,10 @@ public class ItemPickup : MonoBehaviour, IObjectTriggered
                 break;
             }
         }
+        triggered = true;
 
         // item was picked up so we no longer need it in the world
-        Destroy(gameObject);
+        if (destroyOnTrigger) Destroy(gameObject);
     } 
 
     public void LeftRange() {
