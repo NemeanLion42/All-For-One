@@ -41,9 +41,14 @@ public class DialogueBox : MonoBehaviour, IObjectTriggered
         // is the dialogue box showing and did the user press space?
         if (triggered && Input.GetKeyDown(KeyCode.Space)) {
             // yes! destroy the dialogue box object
-            Destroy(dialogueInstance);
-            triggered = false;
-            dialogueInstance = null;
+            // Destroy(dialogueInstance);
+            // triggered = false;
+            // dialogueInstance = null;
+
+
+            // instead, let's flip the page
+            FlipPage();
+
         }
     }
 
@@ -74,18 +79,18 @@ public class DialogueBox : MonoBehaviour, IObjectTriggered
         dialogueBackground = dialogueInstance.GetComponentInChildren<Image>();
 
         // make sure the dialogue box says the dialogue
-        WriteText(textToWrite[text_idx]);
+        FlipPage();
 
         // are we at the end of the list?
-        if (text_idx == textToWrite.Length - 1) {
-            // yes! loop the text if the bool is active, otherwise let it be
-            // cut off typing audio/loop here?
-            if (loopText) {text_idx = 0;}
+        // if (text_idx == textToWrite.Length - 1) {
+        //     // yes! loop the text if the bool is active, otherwise let it be
+        //     // cut off typing audio/loop here?
+        //     // if (loopText) {text_idx = 0;}
         
-        } else {
-            // no, increment through
-            text_idx++;
-        }
+        // } else {
+        //     // no, increment through
+        //     text_idx++;
+        // }
     }
 
     public void LeftRange() {
@@ -96,5 +101,22 @@ public class DialogueBox : MonoBehaviour, IObjectTriggered
             Destroy(dialogueInstance);
             dialogueInstance = null;
         }
+    }
+
+    public void FlipPage() {
+        Debug.Log("Flipping page to index: "+text_idx.ToString());
+
+        if (text_idx == textToWrite.Length) {
+            Destroy(dialogueInstance);
+            triggered = false;
+            dialogueInstance = null;
+
+            text_idx = 0;
+            return;
+        }
+
+
+        WriteText(textToWrite[text_idx]);
+        text_idx++;
     }
 }
