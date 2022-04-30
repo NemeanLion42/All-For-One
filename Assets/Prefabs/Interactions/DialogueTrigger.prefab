@@ -116,8 +116,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionKey: {fileID: 7180562627421839707}
-  keyToPress: 69
+  keyToPress: Space
   interactionType: 1
+  requiredToInteract: 
   TMP_KeyToPress: {fileID: 7180562627776696341}
 --- !u!50 &7180562626387200348
 Rigidbody2D:
@@ -181,7 +182,7 @@ Transform:
   m_GameObject: {fileID: 7180562627341590875}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7180562627421839706}
   m_RootOrder: 0
@@ -367,7 +368,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: E
+  m_text: space
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d66c93d265cab2a41ad80c752913c5eb, type: 2}
   m_sharedMaterial: {fileID: 2849224141727465678, guid: d66c93d265cab2a41ad80c752913c5eb, type: 2}
@@ -394,7 +395,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13
+  m_fontSize: 7
   m_fontSizeBase: 13
   m_fontWeight: 400
   m_enableAutoSizing: 0
