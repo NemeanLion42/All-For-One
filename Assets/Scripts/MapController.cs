@@ -9,11 +9,15 @@ public class MapController : MonoBehaviour
     public ChatManager chatManager;
     public GameObject mainCamera;
     public Transform startRoomPrefab;
+    public Transform cafeRoomPrefab;
+    public Transform errorRoomPrefab;
+    public int roomsToExplore = 2; // not including start room or cafe
     public Transform[] roomPrefabs;
     public static int roomSize = 30;
 
     PlayerStats playerStats;
     private bool startRoom = true;
+    int numOfRoomsExplored = 0; // not including start room or cafe
 
     private void CallStartVoting() {
         char delimiter = '\n';
@@ -59,7 +63,10 @@ public class MapController : MonoBehaviour
     }
 
     public GameObject CreateRoom(Vector3 roomPosition) {
+
+        // are we starting the game?
         if (startRoom) {
+            // yep, bring in the security room
             // chatManager.CountVotes();
             GameObject newRoom = Instantiate(startRoomPrefab, roomPosition, Quaternion.identity).gameObject;
             CallStartVoting();
@@ -68,7 +75,18 @@ public class MapController : MonoBehaviour
 
             startRoom = false;
             return newRoom;
-        } else {
+        // have we uncovered the roomsToExplore?
+        } else if (numOfRoomsExplored == roomsToExplore) {
+            // yep, bring in the cafe
+            GameObject newRoom = Instantiate(cafeRoomPrefab, roomPosition, Quaternion.identity).gameObject;
+            playerStats.SetCurrentRoom("Cafe", 0);
+
+            numOfRoomsExplored++;
+            return newRoom;
+
+        // are we still uncovering rooms?
+        } else if (numOfRoomsExplored < roomsToExplore) {
+            // yep! spawn in new rooms
             string countedVotes = chatManager.CountVotes(); // {votes}:room_name
             string[] votesAndRoom = countedVotes.Split(':');
             int numVotes = 0;
@@ -91,7 +109,18 @@ public class MapController : MonoBehaviour
                 throw new System.Exception("no room named " + roomToGenerate);
             }
             GameObject newRoom = Instantiate(newRoomPrefab, roomPosition, Quaternion.identity).gameObject;
-            CallStartVoting();
+            if (numOfRoomsExplored < roomsToExplore-1) {
+                Debug.Log("Call start voting!");
+                // only ask for votes until we're going to generate the Cafe or ERROR rooms
+                CallStartVoting();
+            }
+            numOfRoomsExplored++;
+            return newRoom;
+        } else {
+            // We're done generating rooms. Bring in ERROR rooms
+            GameObject newRoom = Instantiate(errorRoomPrefab, roomPosition, Quaternion.identity).gameObject;
+            playerStats.SetCurrentRoom("} ERROR }", 0);
+
             return newRoom;
         }
     }
