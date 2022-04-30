@@ -11,6 +11,8 @@ public class DialogueBox : MonoBehaviour, IObjectTriggered
         "oof"
     };
     public bool loopText = true;
+    public bool dontFlip = false;
+    bool justTriggered = false;
 
     bool _triggered = false;
     public bool triggered {
@@ -40,14 +42,32 @@ public class DialogueBox : MonoBehaviour, IObjectTriggered
     {
         // is the dialogue box showing and did the user press space?
         if (triggered && Input.GetKeyDown(KeyCode.Space)) {
+            if (justTriggered) {
+                justTriggered = false;
+                return;
+            }
             // yes! destroy the dialogue box object
             // Destroy(dialogueInstance);
             // triggered = false;
             // dialogueInstance = null;
 
 
-            // instead, let's flip the page
-            FlipPage();
+            // should we flip the page on interaction?
+            if (dontFlip) {
+                // no, just remove the textbox and increment the index
+                Destroy(dialogueInstance);
+                triggered = false;
+                dialogueInstance = null;
+
+                // make sure to reset the text or back off out of index if we're not flipping and on the last page
+                if (text_idx == textToWrite.Length) {
+                    if (loopText) text_idx = 0;
+                    else text_idx--;
+                }
+            } else {
+                // yep! flip the page
+                FlipPage();
+            }
 
         }
     }
@@ -64,6 +84,7 @@ public class DialogueBox : MonoBehaviour, IObjectTriggered
     } 
     public void TriggerObject() {
         triggered = true;
+        justTriggered = true;
         // if we want an audio clip that sounds like typing, it would likely trigger here
 
         // Create a dialogue box instance and set it's parent to the canvas
@@ -77,6 +98,8 @@ public class DialogueBox : MonoBehaviour, IObjectTriggered
         // update out text and background objects
         dialogueText = dialogueInstance.GetComponentInChildren<TMP_Text>();
         dialogueBackground = dialogueInstance.GetComponentInChildren<Image>();
+
+        // text_idx -= 1; // space triggers both
 
         // make sure the dialogue box says the dialogue
         FlipPage();
@@ -96,6 +119,7 @@ public class DialogueBox : MonoBehaviour, IObjectTriggered
     public void LeftRange() {
         // the player left the range so we should delete the dialogue box
         triggered = false;
+        justTriggered = false;
 
         if (dialogueInstance != null) {
             Destroy(dialogueInstance);
@@ -109,14 +133,16 @@ public class DialogueBox : MonoBehaviour, IObjectTriggered
         if (text_idx == textToWrite.Length) {
             Destroy(dialogueInstance);
             triggered = false;
+            justTriggered = false;
             dialogueInstance = null;
 
-            text_idx = 0;
+            if (loopText) text_idx = 0;
+            else text_idx --;
+
             return;
         }
 
-
-        WriteText(textToWrite[text_idx]);
+        if (text_idx != -1) WriteText(textToWrite[text_idx]);
         text_idx++;
     }
 }

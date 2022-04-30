@@ -12994,6 +12994,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200351, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
+      propertyPath: dontFlip
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7180562626387200351, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: textToWrite.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -13012,6 +13016,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2849224141727465678, guid: d66c93d265cab2a41ad80c752913c5eb, type: 2}
+    - target: {fileID: 7180562627776696341, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
 --- !u!4 &2366109165263436438 stripped

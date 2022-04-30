@@ -12,7 +12,7 @@ public class Interactable : MonoBehaviour
     public GameObject interactionKey;
 
     // which key should the user press?
-    public char keyToPress = 'E';
+    public string keyToPress = "Space";
     KeyCode inputKeyCode;
 
     public enum InteractionType {
@@ -43,15 +43,21 @@ public class Interactable : MonoBehaviour
     {
         playerStats = (PlayerStats) AssetDatabase.LoadAssetAtPath("Assets/Scripts/StreamerStats.asset", typeof(PlayerStats));
 
-        inputKeyCode = (KeyCode) System.Enum.Parse(typeof(KeyCode), keyToPress.ToString());
+        inputKeyCode = (KeyCode) System.Enum.Parse(typeof(KeyCode), keyToPress);
 
         if (interactionKey == null) {
             interactionKey = GetComponentInChildren<GameObject>(); // this should get the first object
         }
 
         if (TMP_KeyToPress != null) {
-            // make sure the key to press element has the right letter
-            TMP_KeyToPress.text = keyToPress.ToString();
+            // make sure the key to press element has the right string
+            if (keyToPress.ToLower().Equals("space")) {
+                // if we want them to press space, make it lower case
+                TMP_KeyToPress.text = keyToPress.ToLower();
+            } else {
+                // otherwise, just put the string in
+                TMP_KeyToPress.text = keyToPress.ToString();
+            }
         }
 
         scriptsToTrigger = GetComponents<IObjectTriggered>();
