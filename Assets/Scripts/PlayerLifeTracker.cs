@@ -21,11 +21,14 @@ public class PlayerLifeTracker : MonoBehaviour
         rooms = new List<GameObject>();
         // roomPositions.Add(Vector3.zero);
 
+
+        // Subscribe to the game over trigger
         PlayerStats.TriggerGameOver += OnGameOverTriggered;
     }
 
     private void OnGameOverTriggered(bool success)
     {
+        // success bool tells you if the player won or lost the game.
         alive = false;
     }
 
