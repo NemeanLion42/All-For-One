@@ -110,7 +110,6 @@ public class MapController : MonoBehaviour
             }
             GameObject newRoom = Instantiate(newRoomPrefab, roomPosition, Quaternion.identity).gameObject;
             if (numOfRoomsExplored < roomsToExplore-1) {
-                Debug.Log("Call start voting!");
                 // only ask for votes until we're going to generate the Cafe or ERROR rooms
                 CallStartVoting();
             }

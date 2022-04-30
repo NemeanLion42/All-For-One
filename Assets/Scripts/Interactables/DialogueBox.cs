@@ -135,8 +135,6 @@ public class DialogueBox : MonoBehaviour, IObjectTriggered
     }
 
     public void FlipPage() {
-        Debug.Log("Flipping page to index: "+text_idx.ToString());
-
         if (text_idx == textToWrite.Length) {
             Destroy(dialogueInstance);
             triggered = false;
