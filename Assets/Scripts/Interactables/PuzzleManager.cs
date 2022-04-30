@@ -8,10 +8,16 @@ public class PuzzleManager : MonoBehaviour
     LeverInteractable[] leverList;
 
     public int[] leverCombo = new int[] {1,2,3,4}; // hour numbers
+    public int numOfFramesForAnim = 120;
+    public float animRate = 10f;
 
     public GameObject hintInteractable;
     public GameObject keyPrefab;
 
+    public bool playerSolvedPuzzle = false;
+
+    public Color litOnColor;
+    public Color litFailColor;
     int[] leversPressedInOrder;
     int numOfLeversPressed = 0;
 
@@ -103,7 +109,7 @@ public class PuzzleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // if (playerSolvedPuzzle) StartCoroutine(IndicateSuccess());
     }
 
 
@@ -111,8 +117,6 @@ public class PuzzleManager : MonoBehaviour
 
         leversPressedInOrder[numOfLeversPressed] = leverNumber+1;
         numOfLeversPressed++;
-
-        Debug.Log("We've pressed "+numOfLeversPressed.ToString());
 
         // did they hit the number of levers needed for combo?
         if (numOfLeversPressed == leverCombo.Length) {
@@ -126,22 +130,90 @@ public class PuzzleManager : MonoBehaviour
 
             // did they match the combo?
             if (matching_combo) {
-                if (keyPrefab != null) {
-                    GameObject keyInstance = Instantiate(keyPrefab, Vector3.zero, Quaternion.identity);
-                    keyInstance.transform.SetParent(transform.parent); // set the parent to be the room's transform
-                    keyInstance.transform.localPosition = Vector3.zero;
-                }
-                print("Success! spawn a key");
+                ComboMatches();
             } else {
                 // no, the combo doesn't match, reset things
-                leversPressedInOrder = new int[leverCombo.Length];
-                numOfLeversPressed = 0;
-
-                foreach (LeverInteractable lever in leverList) {
-                    lever.ResetLever();
-                }
+                ComboDoesntMatch();
             }
 
         }
+    }
+
+    void ComboDoesntMatch() {
+        leversPressedInOrder = new int[leverCombo.Length];
+        numOfLeversPressed = 0;
+
+        // make it so they cannot interact with anything while animating
+        foreach (LeverInteractable lever in leverList) {
+            lever.PuzzleSolved = true;
+        }
+
+        StartCoroutine(IndicateFailure());
+    }
+
+    void ComboMatches() {
+        StartCoroutine(IndicateSuccess());
+        playerSolvedPuzzle = true;
+        foreach (LeverInteractable lever in leverList) {
+            lever.PuzzleSolved = true;
+        }
+
+    }
+
+    IEnumerator IndicateSuccess() {
+        float alphaMargin = 0.15f;
+        
+        for (int frame_num = 0; frame_num <= numOfFramesForAnim; frame_num++) {
+            if (frame_num >= 0 * numOfFramesForAnim/2f) {
+                float alpha = alphaMargin*Mathf.Cos(frame_num/animRate) + (1-alphaMargin);
+                Debug.Log("updating alpha to be "+alpha.ToString());
+                if (frame_num == numOfFramesForAnim) alpha = 1;
+
+                foreach (LeverInteractable lever in leverList) {
+
+                    if (ComboContains(lever.lever_number+1)) {
+                        SpriteRenderer litSprite = lever.litSprite.GetComponent<SpriteRenderer>();
+                        Color c = litSprite.color;
+                        c.a = alpha;
+                        litSprite.color = c;
+                    }
+                }
+            }
+
+            yield return null;
+        }
+
+        if (keyPrefab != null) {
+            GameObject keyInstance = Instantiate(keyPrefab, Vector3.zero, Quaternion.identity);
+            keyInstance.transform.SetParent(transform.parent); // set the parent to be the room's transform
+            keyInstance.transform.localPosition = Vector3.zero;
+        }
+
+        playerSolvedPuzzle = false;
+    }
+
+    IEnumerator IndicateFailure() {
+        for (int frame_num = 0; frame_num <= numOfFramesForAnim*1.5f; frame_num++) {
+            Color useColor = Color.Lerp(litOnColor, litFailColor, frame_num/(1.5f*numOfFramesForAnim * 0.8f));
+
+            foreach (LeverInteractable lever in leverList) {
+                if (lever.litSprite.activeInHierarchy) {
+                    SpriteRenderer litSprite = lever.litSprite.GetComponent<SpriteRenderer>();
+                    litSprite.color = useColor;
+                }
+            }
+
+            yield return null;
+        }
+
+        foreach (LeverInteractable lever in leverList) {
+            if (lever.litSprite.activeInHierarchy) {
+                SpriteRenderer litSprite = lever.litSprite.GetComponent<SpriteRenderer>();
+                litSprite.color = litOnColor;
+            }
+            lever.ResetLever();
+            lever.PuzzleSolved = false;
+        }
+
     }
 }

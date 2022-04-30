@@ -9808,8 +9808,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   randomCombo: 1
   leverCombo: 01000000020000000300000004000000
+  numOfFramesForAnim: 320
+  animRate: 25
   hintInteractable: {fileID: 3477550985144994924}
   keyPrefab: {fileID: 2719125585775949066, guid: ece4c1d20b346ab41ab91f4fba7b9870, type: 3}
+  playerSolvedPuzzle: 0
+  litOnColor: {r: 1, g: 0.627451, b: 0.91764706, a: 1}
+  litFailColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &5386409404923898623
 GameObject:
   m_ObjectHideFlags: 0

@@ -119,7 +119,6 @@ public class Interactable : MonoBehaviour
 
         // did the player just leave the space?
         if (collider2D.gameObject.GetComponent<PlayerMovementController>() != null) {
-            currentState = InteractionState.OutOfRange;
             LeftRange();
 
             playerScript = null;
@@ -138,8 +137,8 @@ public class Interactable : MonoBehaviour
         
     }
 
-    void LeftRange() {
-
+    public void LeftRange() {
+        currentState = InteractionState.OutOfRange;
         foreach (IObjectTriggered sTrigger in scriptsToTrigger) {
             // did we end up triggering the event before?
             if (sTrigger.triggered || sTrigger.GetType() == typeof(GoodGameOverInteractable)) {

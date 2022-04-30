@@ -24,7 +24,8 @@ public class PlayerStats : ScriptableObject
     public GameObject playerObject;
 
     public enum InventoryItems {
-        key
+        key,
+        inaccessible
     }
 
     public List<InventoryItems> currentInventory = new List<InventoryItems>();

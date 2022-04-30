@@ -23,6 +23,17 @@ public class LeverInteractable : MonoBehaviour, IObjectTriggered
         }
     }
 
+    bool puzzleSolved = false;
+    public bool PuzzleSolved {
+        set {
+            puzzleSolved=value;
+            if (puzzleSolved) GetComponent<Interactable>().requiredToInteract = new PlayerStats.InventoryItems[] {PlayerStats.InventoryItems.inaccessible};
+            else GetComponent<Interactable>().requiredToInteract = new PlayerStats.InventoryItems[]{};
+
+        }
+        get {return puzzleSolved;}
+    }
+
     PuzzleManager puzzleManager;
     public GameObject unlitSprite;
     SpriteRenderer unLitRenderer;
@@ -51,9 +62,8 @@ public class LeverInteractable : MonoBehaviour, IObjectTriggered
     public void TriggerObject() {
         // flip the lever!
         triggered = true;
-        puzzleManager.TurnOnLever(lever_number);
+        if (!puzzleSolved) puzzleManager.TurnOnLever(lever_number);
 
-        Debug.Log("Turn lever "+lever_number.ToString()+" on!");
     }
 
     public void LeftRange() {

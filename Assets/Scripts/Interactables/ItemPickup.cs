@@ -51,10 +51,6 @@ public class ItemPickup : MonoBehaviour, IObjectTriggered
             case PickupType.key: {
                 // the object is a key! add it to the player inventory
                 playerStats.currentInventory.Add(PlayerStats.InventoryItems.key);
-
-                foreach (PlayerStats.InventoryItems i in playerStats.currentInventory) {
-                    Debug.Log("Item in inventory: "+i.ToString());
-                }
                 break;
             }
             case PickupType.timeBetweenShots: {
