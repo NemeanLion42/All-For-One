@@ -16,6 +16,7 @@ public class ResetPlayerState : MonoBehaviour
         playerStats.PlayerMaxHealth = startingMaxHealth;
         playerStats.PlayerHealth = startingHealth;
         playerStats.PlayerCoins = startingCoins;
+        playerStats.gameOver = false;
 
         playerStats.currentInventory = new List<PlayerStats.InventoryItems>();
     }

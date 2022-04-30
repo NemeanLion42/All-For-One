@@ -142,7 +142,7 @@ public class Interactable : MonoBehaviour
 
         foreach (IObjectTriggered sTrigger in scriptsToTrigger) {
             // did we end up triggering the event before?
-            if (sTrigger.triggered) {
+            if (sTrigger.triggered || sTrigger.GetType() == typeof(GoodGameOverInteractable)) {
                 // yes! make sure the event knows the player left
                 sTrigger.LeftRange();
             }

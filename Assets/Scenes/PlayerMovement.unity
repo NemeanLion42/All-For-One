@@ -808,6 +808,7 @@ MonoBehaviour:
   rooms: []
   cameraController: {fileID: 901920178}
   alive: 0
+  playerStats: {fileID: 0}
 --- !u!1 &1488107359
 GameObject:
   m_ObjectHideFlags: 0
