@@ -124,6 +124,13 @@ public class DialogueBox : MonoBehaviour, IObjectTriggered
         if (dialogueInstance != null) {
             Destroy(dialogueInstance);
             dialogueInstance = null;
+
+            // if the player just leaves, we should make sure that we're not out of bounds
+            if (text_idx == textToWrite.Length) {
+                    if (loopText) text_idx = 0;
+                    else text_idx--;
+            }
+
         }
     }
 

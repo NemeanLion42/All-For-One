@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class PlayerLifeTracker : MonoBehaviour
     public List<GameObject> rooms;
     public CameraController cameraController;
     public bool alive;
+    public PlayerStats playerStats;
     int roomToShow = 0;
     float lastTimeMoved = 0;
     float timeBetweenMoves = 2;
@@ -18,6 +20,20 @@ public class PlayerLifeTracker : MonoBehaviour
         roomPositions = new List<Vector3>();
         rooms = new List<GameObject>();
         // roomPositions.Add(Vector3.zero);
+
+
+        // Subscribe to the game over trigger
+        PlayerStats.TriggerGameOver += OnGameOverTriggered;
+    }
+
+    private void OnGameOverTriggered(bool success)
+    {
+        // success bool tells you if the player won or lost the game.
+        alive = false;
+    }
+
+    void OnDisable() {
+        PlayerStats.TriggerGameOver -= OnGameOverTriggered;
     }
 
     // Update is called once per frame
@@ -41,4 +57,6 @@ public class PlayerLifeTracker : MonoBehaviour
             }
         }
     }
+
+    
 }

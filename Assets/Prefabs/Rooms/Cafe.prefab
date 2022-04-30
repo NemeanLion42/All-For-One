@@ -13012,12 +13012,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200351, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
+      propertyPath: dontFlip
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7180562626387200351, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
+      propertyPath: loopText
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7180562626387200351, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: textToWrite.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200351, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: textToWrite.Array.data[0]
-      value: It's time to shutdown until next year!
+      value: Come talk to me again to retire until next year
+      objectReference: {fileID: 0}
+    - target: {fileID: 7180562626387200351, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
+      propertyPath: textToWrite.Array.data[1]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7180562627776696340, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -13025,11 +13037,30 @@ PrefabInstance:
       objectReference: {fileID: 2849224141727465678, guid: d66c93d265cab2a41ad80c752913c5eb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
+--- !u!1 &976427201546604588 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7180562626387200321, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
+  m_PrefabInstance: {fileID: 7938312289042012525}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &976427201546604590 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7180562626387200323, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
   m_PrefabInstance: {fileID: 7938312289042012525}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5051908002699530322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976427201546604588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daa6313c71beda54fb5eda45ce3708d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggersUntilGameOver: 3
+  playerStats: {fileID: 11400000, guid: f36bea0b1b933bc4481662a03c5dd158, type: 2}
 --- !u!1001 &8056508630993409675
 PrefabInstance:
   m_ObjectHideFlags: 0

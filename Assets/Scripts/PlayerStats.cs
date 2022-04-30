@@ -18,6 +18,9 @@ public class PlayerStats : ScriptableObject
     public delegate void UpdateCurrentRoom(string roomName, int votesForRoom);
     public static event UpdateCurrentRoom OnCurrentRoomUpdate;
 
+    public delegate void OnGameOver(bool success);
+    public static event OnGameOver TriggerGameOver;
+
     public GameObject playerObject;
 
     public enum InventoryItems {
@@ -34,6 +37,8 @@ public class PlayerStats : ScriptableObject
     int playerCoins;
     string currentRoom;
     int votesForRoom;
+    public bool gameOver = false;
+    bool playerSucceeded = false;
 
     public string ChannelName {
         get {
@@ -49,6 +54,8 @@ public class PlayerStats : ScriptableObject
         set {
             playerHealth = Mathf.Clamp(value, 0.0f, playerMaxHealth);
             if (OnCurrentHealthUpdate != null) OnCurrentHealthUpdate.Invoke(playerHealth);
+
+            if (playerHealth == 0 && TriggerGameOver != null) TriggerGameOver.Invoke(false); // player failed
         }
         get {
             return playerHealth;
@@ -91,5 +98,16 @@ public class PlayerStats : ScriptableObject
         votesForRoom = numVotes;
 
         if (OnCurrentRoomUpdate != null) OnCurrentRoomUpdate(currentRoom, votesForRoom);
+    }
+
+    public bool GameWasSuccess {
+        set {
+            gameOver = true;
+            playerSucceeded = value;
+            if (TriggerGameOver != null) TriggerGameOver.Invoke(playerSucceeded);
+        }
+        get {
+            return playerSucceeded;
+        }
     }
 }
