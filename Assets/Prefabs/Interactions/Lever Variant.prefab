@@ -226,6 +226,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lever Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7180562626387200322, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
+      propertyPath: m_Size.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7180562626387200322, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7180562626387200322, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
+      propertyPath: m_Direction
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200323, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -288,11 +300,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200351, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: textToWrite.Array.data[0]
-      value: you activated the bit!
+      value: you pressed the button!
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200351, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: textToWrite.Array.data[1]
-      value: the bit is already active...
+      value: the button is already pressed...
       objectReference: {fileID: 0}
     - target: {fileID: 7180562627421839706, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: m_LocalPosition.x
@@ -332,7 +344,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.1}
+  m_Offset: {x: 0, y: 0.3}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -343,7 +355,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.8}
+  m_Size: {x: 1, y: 1.3}
   m_EdgeRadius: 0
 --- !u!114 &2388094841949380012
 MonoBehaviour:

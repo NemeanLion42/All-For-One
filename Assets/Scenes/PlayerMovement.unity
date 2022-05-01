@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3764574212334992196, guid: eca5a358096a4ae4992bcea0bf840a90, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3889807897654713239, guid: eca5a358096a4ae4992bcea0bf840a90, type: 3}
       propertyPath: m_Name
       value: Canvas
