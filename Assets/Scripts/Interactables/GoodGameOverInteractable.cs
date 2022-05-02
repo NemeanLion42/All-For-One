@@ -12,7 +12,6 @@ public class GoodGameOverInteractable : MonoBehaviour, IObjectTriggered
 
     public bool triggered {
         set {
-            Debug.Log("good game over triggered");
             // _triggered = value;
             if (value) triggeredCount++;
         } 
