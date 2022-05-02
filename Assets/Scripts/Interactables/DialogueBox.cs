@@ -89,7 +89,7 @@ public class DialogueBox : MonoBehaviour, IObjectTriggered
 
         // Create a dialogue box instance and set it's parent to the canvas
         dialogueInstance = Instantiate(dialoguePrefab, Vector3.zero, Quaternion.identity);
-        dialogueInstance.transform.SetParent(uiCanvas.transform);
+        dialogueInstance.transform.SetParent(uiCanvas.transform.GetChild(0).transform);
         // we need to make sure the dialogueBoxRectangle is just standard in the local space
         RectTransform dialogueBoxRect = dialogueInstance.GetComponent<RectTransform>();
         dialogueBoxRect.localPosition = new Vector3(0, 15, 0);

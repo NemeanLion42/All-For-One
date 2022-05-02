@@ -121,6 +121,20 @@ public class ChatManager : MonoBehaviour
         return false;
     }
 
+    public bool DisconnectClient() {
+        if (twitchClient == null) return false;
+
+        if (currentGenState == GenerationState.TwitchGen) {
+            twitchClient.client.OnMessageReceived -= OnMessageReceived;
+            twitchClient.client.OnChatCommandReceived -= OnChatCommandReceived;
+
+            twitchClient.client.Disconnect();
+            
+        }
+
+        return true;
+    }
+
     private void OnChatCommandReceived(object sender, OnChatCommandReceivedArgs e)
     {
         // This function is called every time we receive a command in chat
