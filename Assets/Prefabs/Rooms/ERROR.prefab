@@ -11768,7 +11768,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200351, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: textToWrite.Array.data[0]
-      value: ERROR } ERROR } ERROR
+      value: The requisite rooms have been explored, no more will generate. Please
+        end the maintenance check in the cafe at your convenience
       objectReference: {fileID: 0}
     - target: {fileID: 7180562627776696340, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -11862,7 +11863,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200351, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: textToWrite.Array.data[0]
-      value: ERROR } ERROR } ERROR
+      value: The requisite rooms have been explored, no more will generate. Please
+        end the maintenance check in the cafe at your convenience
       objectReference: {fileID: 0}
     - target: {fileID: 7180562627776696340, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -11956,7 +11958,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200351, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: textToWrite.Array.data[0]
-      value: ERROR } ERROR } ERROR
+      value: The requisite rooms have been explored, no more will generate. Please
+        end the maintenance check in the cafe at your convenience
       objectReference: {fileID: 0}
     - target: {fileID: 7180562627776696340, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -12050,7 +12053,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200351, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: textToWrite.Array.data[0]
-      value: ERROR } ERROR } ERROR
+      value: The requisite rooms have been explored, no more will generate. Please
+        end the maintenance check in the cafe at your convenience
       objectReference: {fileID: 0}
     - target: {fileID: 7180562627776696340, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: m_Materials.Array.data[0]
