@@ -58,5 +58,12 @@ public class StartScreen : MonoBehaviour
 
     public void HideCredits(){
         Debug.Log("HideCredits");
+        creditsPanel.SetActive(false);
+    }
+
+    public void QuitGame(){
+        Debug.Log("bye-bye");
+        Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
     }
 }
