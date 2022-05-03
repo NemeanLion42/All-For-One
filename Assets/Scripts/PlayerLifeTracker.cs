@@ -7,6 +7,8 @@ public class PlayerLifeTracker : MonoBehaviour
 {
     public List<Vector3> roomPositions;
     public List<GameObject> rooms;
+    private AudioSource source;
+    public AudioClip deathSound;
     public CameraController cameraController;
     public bool alive;
     public PlayerStats playerStats;
@@ -20,6 +22,7 @@ public class PlayerLifeTracker : MonoBehaviour
         roomPositions = new List<Vector3>();
         rooms = new List<GameObject>();
         // roomPositions.Add(Vector3.zero);
+        source = GetComponent<AudioSource>();        
 
 
         // Subscribe to the game over trigger
@@ -29,6 +32,9 @@ public class PlayerLifeTracker : MonoBehaviour
     private void OnGameOverTriggered(bool success)
     {
         // success bool tells you if the player won or lost the game.
+        if (alive) {
+            source.PlayOneShot(deathSound, 1.0f);
+        }
         alive = false;
     }
 

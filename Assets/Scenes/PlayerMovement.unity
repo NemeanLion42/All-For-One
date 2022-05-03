@@ -152,7 +152,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5f2dddd3250f24754ae5d4b9c35951da, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.057
+  m_Volume: 0.11
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -648,7 +648,6 @@ MonoBehaviour:
   playerTrailTracker: {fileID: 1473875746}
   laserSound: {fileID: 8300000, guid: b546fcf83869440b492b5454f71b1936, type: 3}
   hurtSound: {fileID: 8300000, guid: 872cbe6645e8f4f83bd63eeec553faf3, type: 3}
-  deathSound: {fileID: 8300000, guid: 352738a717dff4ff0922c299d992d857, type: 3}
 --- !u!4 &1473875742
 Transform:
   m_ObjectHideFlags: 0
@@ -691,7 +690,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -806,6 +805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomPositions: []
   rooms: []
+  deathSound: {fileID: 8300000, guid: 352738a717dff4ff0922c299d992d857, type: 3}
   cameraController: {fileID: 901920178}
   alive: 0
   playerStats: {fileID: 0}
