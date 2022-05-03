@@ -8,11 +8,13 @@ public class PlayerMovementController : MonoBehaviour
     public SettingsController settings;
     private Rigidbody2D _rigidbody;
     private PlayerStats playerStats;
+    SpriteRenderer playerSprite;
 
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        playerSprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -28,9 +30,11 @@ public class PlayerMovementController : MonoBehaviour
             }
             if (Input.GetKey(settings.playerMoveLeft)) {
                 intendedDirection += Vector2.left;
+                playerSprite.transform.localScale = new Vector3(3, 3, 1);
             }
             if (Input.GetKey(settings.playerMoveRight)) {
                 intendedDirection += Vector2.right;
+                playerSprite.transform.localScale = new Vector3(-3, 3, 1);
             }
 
             Vector2 intendedVelocity = intendedDirection.normalized * settings.playerMaxSpeed;
