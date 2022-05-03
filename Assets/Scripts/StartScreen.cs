@@ -11,6 +11,7 @@ public class StartScreen : MonoBehaviour
     public PlayerStats playerStats;
     public string nextScenePath = "";
     TMP_Text channelNameTMPText;
+    public GameObject creditsPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,5 +49,21 @@ public class StartScreen : MonoBehaviour
         } else {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+    }
+
+    public void ShowCredits(){
+        Debug.Log("ShowCredits");
+        creditsPanel.SetActive(true);
+    }
+
+    public void HideCredits(){
+        Debug.Log("HideCredits");
+        creditsPanel.SetActive(false);
+    }
+
+    public void QuitGame(){
+        Debug.Log("bye-bye");
+        Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
     }
 }
