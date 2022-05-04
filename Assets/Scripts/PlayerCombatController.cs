@@ -19,13 +19,10 @@ public class PlayerCombatController : MonoBehaviour
     public AudioClip laserSound;
     public AudioClip hurtSound;
 
-    SpriteRenderer[] playerSprites;
-
     // Start is called before the first frame update
     void Start()
     {
-        source = GetComponent<AudioSource>();  
-        playerSprites = GetComponentsInChildren<SpriteRenderer>();      
+        source = GetComponent<AudioSource>();        
     }
 
     public void TakeDamage(float damageTaken) {
@@ -35,12 +32,6 @@ public class PlayerCombatController : MonoBehaviour
 
             if (playerStats.PlayerHealth <= 0) {
                 playerTrailTracker.alive = false;
-
-                // turn off the player sprites
-                foreach (SpriteRenderer s in playerSprites) {
-                    s.gameObject.SetActive(false);
-                }
-
             } else {
                 source.PlayOneShot(hurtSound, 1.0f);
             }

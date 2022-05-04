@@ -942,7 +942,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: out of power!
+  m_text: you lose!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c651659036f2f3469be286f5fdb299d, type: 2}
   m_sharedMaterial: {fileID: 7132542950672282718, guid: 1c651659036f2f3469be286f5fdb299d, type: 2}
@@ -1152,7 +1152,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: maintenance check complete!
+  m_text: you win!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c651659036f2f3469be286f5fdb299d, type: 2}
   m_sharedMaterial: {fileID: 7132542950672282718, guid: 1c651659036f2f3469be286f5fdb299d, type: 2}
@@ -1444,10 +1444,6 @@ PrefabInstance:
     - target: {fileID: 4892777457668102922, guid: 41194469a6eb5824ca23a2168967f42e, type: 3}
       propertyPath: m_Name
       value: GearsUI (TMP)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4892777457668102922, guid: 41194469a6eb5824ca23a2168967f42e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4892777457668102923, guid: 41194469a6eb5824ca23a2168967f42e, type: 3}
       propertyPath: m_Pivot.x

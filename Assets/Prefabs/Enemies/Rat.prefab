@@ -126,7 +126,6 @@ MonoBehaviour:
   timeToUnstun: 0
   state: 0
   health: 5
-  enemyListController: {fileID: 0}
 --- !u!50 &4087961713209483135
 Rigidbody2D:
   serializedVersion: 4

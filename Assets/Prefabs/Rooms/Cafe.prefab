@@ -736,8 +736,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.5, y: 4.3}
-  m_SizeDelta: {x: 10, y: 3}
+  m_AnchoredPosition: {x: 5.94, y: -11.27}
+  m_SizeDelta: {x: 3, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &5129597987343554831
 MeshRenderer:
@@ -800,7 +800,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: End maintenance check!
+  m_text: Clock out here!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d66c93d265cab2a41ad80c752913c5eb, type: 2}
   m_sharedMaterial: {fileID: 2849224141727465678, guid: d66c93d265cab2a41ad80c752913c5eb, type: 2}
@@ -12859,11 +12859,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200322, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: m_Size.x
-      value: 5.5
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200322, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: m_Size.y
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200322, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: m_Offset.x
@@ -12879,11 +12879,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200323, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.6
+      value: -3.68
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200323, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.44
+      value: 2.79
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200323, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12949,7 +12949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200321, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: m_Name
-      value: clockOutTrigger
+      value: DialogueTrigger (2)
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200322, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: m_Size.x
@@ -12957,7 +12957,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200322, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: m_Size.y
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200322, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: m_Offset.x
@@ -12965,10 +12965,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200322, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: m_Offset.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7180562626387200322, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
-      propertyPath: m_Direction
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200323, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
@@ -12977,11 +12973,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200323, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.64
+      value: 7.22
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200323, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.85
+      value: -12.16
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200323, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13029,7 +13025,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200351, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: textToWrite.Array.data[0]
-      value: Come talk to me again to end the maintenance check!
+      value: Come talk to me again to retire until next year
       objectReference: {fileID: 0}
     - target: {fileID: 7180562626387200351, guid: 2b9ecdc8a7ebd4242b327760fca754ea, type: 3}
       propertyPath: textToWrite.Array.data[1]
