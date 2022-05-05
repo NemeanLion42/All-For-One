@@ -120,6 +120,7 @@ MonoBehaviour:
   interactionType: 1
   requiredToInteract: 
   TMP_KeyToPress: {fileID: 7180562627776696341}
+  playerStats: {fileID: 11400000, guid: f36bea0b1b933bc4481662a03c5dd158, type: 2}
 --- !u!50 &7180562626387200348
 Rigidbody2D:
   serializedVersion: 4
@@ -155,6 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textToWrite: []
   loopText: 1
+  dontFlip: 0
   dialoguePrefab: {fileID: 2529666231115416267, guid: 8ce385f056a204a4aaaeafb2a9521e0a, type: 3}
 --- !u!1 &7180562627341590875
 GameObject:

@@ -37,10 +37,17 @@ public class ExitToMainMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        // ChatManager chatManager = FindObjectOfType<ChatManager>();
+        // chatManager.DisconnectClient();
+        // SceneManager.LoadScene(0);
+    }
+
+    public void Clicked() {
         ChatManager chatManager = FindObjectOfType<ChatManager>();
         chatManager.DisconnectClient();
         SceneManager.LoadScene(0);
     }
+
 
     public void OnPointerEnter(PointerEventData eventData)
     {

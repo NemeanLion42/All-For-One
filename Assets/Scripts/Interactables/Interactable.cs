@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
+// using UnityEditor;
 using TMPro;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -27,7 +27,7 @@ public class Interactable : MonoBehaviour
 
     PlayerMovementController playerScript = null;
     public TMP_Text TMP_KeyToPress;
-    PlayerStats playerStats;
+    public PlayerStats playerStats;
 
     public enum InteractionState {
         InRange,
@@ -41,7 +41,7 @@ public class Interactable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerStats = (PlayerStats) AssetDatabase.LoadAssetAtPath("Assets/Scripts/StreamerStats.asset", typeof(PlayerStats));
+        playerStats = FindObjectOfType<ChatManager>().GetComponent<ChatManager>().playerStats;
 
         inputKeyCode = (KeyCode) System.Enum.Parse(typeof(KeyCode), keyToPress);
 

@@ -28,8 +28,9 @@ public class StartScreen : MonoBehaviour
 
         if (channelNameTMPText != null && playerStats != null) {
 
+            print(channelNameTMPText.text.Length);
             // create char array to detect valid chars in channel name
-            char[] channelCharList = new char[50];
+            char[] channelCharList = new char[channelNameTMPText.text.Length - 1];
             TMP_CharacterInfo[] cinfoList = channelNameTMPText.textInfo.characterInfo;
 
             int added_chars = 0;
@@ -64,6 +65,6 @@ public class StartScreen : MonoBehaviour
     public void QuitGame(){
         Debug.Log("bye-bye");
         Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false;
+        // UnityEditor.EditorApplication.isPlaying = false;
     }
 }

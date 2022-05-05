@@ -35,7 +35,7 @@ public class TwitchClient : MonoBehaviour
     private int messageCount = 0;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // we want this script to be running whenever the game is running
         Application.runInBackground = true;       

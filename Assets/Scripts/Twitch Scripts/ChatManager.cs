@@ -7,8 +7,7 @@ using UnityEngine.UI;
 
 public class ChatManager : MonoBehaviour
 {
-    [SerializeField]
-    private PlayerStats playerStats;
+    public PlayerStats playerStats;
     private string channelName;
 
     // ==== CONTROL FLOW ====
@@ -56,6 +55,8 @@ public class ChatManager : MonoBehaviour
 
             // Initialize a new list of the commands we've received
             commandsFromChat = new List<ChatCommand>();
+
+            ConnectClient();
         }
 
         // Debug.Log("Open voting with 1; Close with 2");
@@ -122,7 +123,7 @@ public class ChatManager : MonoBehaviour
     }
 
     public bool DisconnectClient() {
-        if (twitchClient == null) return false;
+        if (twitchClient == null || twitchClient.client == null) return false;
 
         if (currentGenState == GenerationState.TwitchGen) {
             twitchClient.client.OnMessageReceived -= OnMessageReceived;

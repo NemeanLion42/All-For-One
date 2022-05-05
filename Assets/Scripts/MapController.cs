@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 public class MapController : MonoBehaviour
 {
@@ -15,7 +14,7 @@ public class MapController : MonoBehaviour
     public Transform[] roomPrefabs;
     public static int roomSize = 30;
 
-    PlayerStats playerStats;
+    public PlayerStats playerStats;
     private bool startRoom = true;
     int numOfRoomsExplored = 0; // not including start room or cafe
 
@@ -31,11 +30,11 @@ public class MapController : MonoBehaviour
 
     void Awake() {
         // should be run before Start()
-        bool didClientConnect = chatManager.ConnectClient();
+        // bool didClientConnect = chatManager.ConnectClient();
     }
 
     private void Start() {
-        playerStats = AssetDatabase.LoadAssetAtPath<PlayerStats>("Assets/Scripts/StreamerStats.asset");
+        // bool didClientConnect = chatManager.ConnectClient();
         CallStartVoting();
     }
 

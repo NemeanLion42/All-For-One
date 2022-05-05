@@ -61,7 +61,8 @@ sysinfo.txt
 *.aab
 *.unitypackage
 *.app
-executable build
+*.app.zip
+AllForOne-Windows*
 
 
 # Crashlytics generated file
